@@ -17,6 +17,7 @@ train:
   cos_lr: true
   close_mosaic: 10
   fraction: 1.0
+  cache: ram  # Match baseline input caching.
   amp: false  # Keep the same precision as baseline on GTX 1650.
 augmentation:
   hsv_h: 0.015

@@ -17,6 +17,7 @@ train:
   cos_lr: true
   close_mosaic: 10
   fraction: 1.0
+  cache: ram  # Cache resized inputs; disable on machines with little free RAM.
   amp: false  # GTX 1650: Ultralytics disables AMP because of numerical instability.
 augmentation:
   hsv_h: 0.015

@@ -29,7 +29,7 @@ WORKSPACE = Path(__file__).resolve().parents[2]
 CONFIG_KEYS = {"name", "model", "data", "seed", "train", "augmentation"}
 TRAIN_KEYS = {
     "epochs", "imgsz", "batch", "workers", "patience", "optimizer", "lr0", "lrf",
-    "weight_decay", "warmup_epochs", "cos_lr", "close_mosaic", "fraction", "amp",
+    "weight_decay", "warmup_epochs", "cos_lr", "close_mosaic", "fraction", "amp", "cache",
 }
 AUGMENTATION_KEYS = {
     "hsv_h", "hsv_s", "hsv_v", "degrees", "translate", "scale", "shear",
@@ -92,6 +92,8 @@ def validate_config(config: dict) -> None:
     for key in ("cos_lr", "amp"):
         if not isinstance(train[key], bool):
             raise ConfigurationError(f"{key} must be true or false")
+    if train["cache"] is not False and train["cache"] != "ram":
+        raise ConfigurationError("cache must be false or ram")
     if train["optimizer"] not in {"SGD", "Adam", "AdamW"}:
         raise ConfigurationError("optimizer must be SGD, Adam or AdamW")
     for key in ("lr0", "lrf", "fraction"):
@@ -297,7 +299,7 @@ def run_training(plan: dict, *, model_factory: Any = None) -> dict:
             # Our atomic mkdir already rejected pre-existing runs; let YOLO use this reserved folder.
             "exist_ok": True, "seed": config["seed"], "deterministic": True,
             "device": device, "pretrained": True, "val": True, "split": "val",
-            "save": True, "plots": True, "cache": False, "resume": False,
+            "save": True, "plots": True, "resume": False,
         }
         effective = {**config, "model_resolved": str(plan["model_path"]), "train_arguments": args}
         (run_dir / "effective_config.yaml").write_text(yaml.safe_dump(effective, allow_unicode=True, sort_keys=False), encoding="utf-8")

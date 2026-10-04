@@ -17,6 +17,7 @@ train:
   cos_lr: true
   close_mosaic: 0
   fraction: 1.0
+  cache: false
   amp: false
 augmentation:
   hsv_h: 0.015
