@@ -1,0 +1,34 @@
+# Paths are relative to the repository; dataset paths are relative to data.yaml.
+name: a_n_baseline
+model: yolov8n.pt
+data: data/processed/uavvaste/data.yaml
+seed: 42
+train:
+  epochs: 50
+  imgsz: 640
+  batch: 4
+  workers: 0
+  patience: 15
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  cos_lr: true
+  close_mosaic: 10
+  fraction: 1.0
+  cache: ram  # Cache resized inputs; disable on machines with little free RAM.
+  amp: false  # GTX 1650: Ultralytics disables AMP because of numerical instability.
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0

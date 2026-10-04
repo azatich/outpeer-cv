@@ -1,0 +1,34 @@
+# Integration check only: one short epoch is not a quality benchmark.
+name: a_n_smoke
+model: yolov8n.pt
+data: data/processed/uavvaste/data.yaml
+seed: 42
+train:
+  epochs: 1
+  imgsz: 320
+  batch: 2
+  workers: 0
+  patience: 0
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  warmup_epochs: 0.0
+  cos_lr: true
+  close_mosaic: 0
+  fraction: 1.0
+  cache: false
+  amp: false
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0

@@ -1,0 +1,13 @@
+{
+  "source": "https://raw.githubusercontent.com/PUTvision/UAVVaste/main/annotations/annotations.json",
+  "paper": "https://doi.org/10.3390/rs13050965",
+  "archive": "https://doi.org/10.5281/zenodo.8214061",
+  "source_annotations_sha256": "2779d40ea98db05d9fb0ea6b0cdbf181a441ce663cf7b81653c81f2f0ef8b403",
+  "annotations_file": "annotations.json",
+  "selected_images": 772,
+  "total_source_images": 772,
+  "download_failures": [],
+  "annotations_only": false,
+  "grouping": "Filename sequence heuristic; not verified flight/location identifiers. Review groups before final evaluation.",
+  "domain": "Aerial/general outdoor litter. Coastal or marine performance is not established by this dataset."
+}

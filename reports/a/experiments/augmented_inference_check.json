@@ -1,0 +1,12 @@
+{
+  "run": "a_n_aug_20",
+  "source": "data/processed/uavvaste/images/val/image_00000388.jpg",
+  "selection": "Same validation image from batch_05 as baseline preview",
+  "device": "cpu",
+  "confidence_threshold_for_preview": 0.25,
+  "detections": 1,
+  "classes": {
+    "0": "rubbish"
+  },
+  "weights_sha256": "4944f56bb2cfb38b0f51200cde97988afb18e4f5daaaaa3276cf6feaba3f5faf"
+}
