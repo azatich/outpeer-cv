@@ -1,0 +1,16 @@
+{
+  "run": "a_n_baseline_20",
+  "source": "data\\processed\\uavvaste\\images\\val\\image_00000096.jpg",
+  "selection": "First filename in validation; illustrative only",
+  "device": "cpu",
+  "confidence_threshold_for_preview": 0.25,
+  "image_shape": [
+    1628,
+    3668
+  ],
+  "detections": 1,
+  "classes": {
+    "0": "rubbish"
+  },
+  "weights_sha256": "adf45329247f1f338460916deda0af8ee59f248d0f579051000a5478be629d5c"
+}

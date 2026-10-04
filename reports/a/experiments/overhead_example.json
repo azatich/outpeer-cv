@@ -1,0 +1,7 @@
+{
+  "source": "data/processed/uavvaste/images/val/image_00000388.jpg",
+  "source_filename": "batch_05_img_4920.jpg",
+  "selection": "First validation image from batch_05; illustrative only",
+  "confidence_threshold_for_preview": 0.25,
+  "detections": 1
+}

@@ -1,0 +1,46 @@
+{
+  "images": 772,
+  "annotations": 3718,
+  "readable_images": 772,
+  "classes": [
+    {
+      "class_id": 0,
+      "name": "rubbish",
+      "objects": 3718,
+      "images": 772
+    }
+  ],
+  "images_without_annotations": 0,
+  "image_statuses": {
+    "ok": 729,
+    "exif_orientation_requires_review": 29,
+    "multiple_frames_requires_review": 14
+  },
+  "annotation_issues": [],
+  "objects_min_side_below_8px_at_640": 1275,
+  "small_object_definition": "Shorter box side <8px after aspect-preserving resize to 640px longest side; diagnostic, not COCO small-object AP.",
+  "filename_groups": {
+    "batch_d07": 92,
+    "unverified_gopro": 38,
+    "batch_s05": 44,
+    "unverified_camera": 4,
+    "unverified_photo": 6,
+    "batch_s03": 41,
+    "batch_s02": 157,
+    "batch_02": 41,
+    "batch_05": 48,
+    "batch_s04": 62,
+    "batch_01": 36,
+    "batch_s01": 34,
+    "batch_d06": 36,
+    "unverified_dji": 2,
+    "batch_03": 21,
+    "batch_04": 54,
+    "batch_d08": 56
+  },
+  "limitations": [
+    "Filename groups are not verified flights or geographic locations.",
+    "UAVVaste is a one-class litter dataset; no material classification or satellite capability is established.",
+    "Marine/coastal generalization requires a separate representative labelled dataset."
+  ]
+}

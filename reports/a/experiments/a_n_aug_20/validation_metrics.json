@@ -1,0 +1,11 @@
+{
+  "split": "val",
+  "metrics": {
+    "metrics/precision(B)": 0.686029721375336,
+    "metrics/recall(B)": 0.592165867569579,
+    "metrics/mAP50(B)": 0.608125385862881,
+    "metrics/mAP50-95(B)": 0.24372772694563133,
+    "fitness": 0.24372772694563133
+  },
+  "test_evaluated": false
+}
