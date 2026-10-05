@@ -1,0 +1,17 @@
+{
+  "tests_passed": 52,
+  "notebooks_executed": {
+    "01_model_comparison.ipynb": 6,
+    "02_error_analysis.ipynb": 5
+  },
+  "app_health": "ok",
+  "selected_model": "b_s_baseline_20",
+  "selected_conf": 0.4,
+  "real_photo_detections": 2,
+  "three_download_formats": "passed",
+  "stale_result_reset": "passed",
+  "frozen_validation_hashes": "verified",
+  "training_excludes_test": true,
+  "handoff_archive_sha256": "db20f065ae460d73faf650c38b3aed9fa070e77ee59546026ac32192db1a3ba3",
+  "app_test_method": "Streamlit AppTest with real local image and trained weights, auto GPU; no model mock; browser unavailable"
+}

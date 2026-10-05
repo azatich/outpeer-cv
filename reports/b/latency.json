@@ -1,0 +1,1575 @@
+{
+  "split": "val",
+  "source_report_sha256": "126a2495d65fa4b4ddbc0494c7a3e9615b083ee4d6dbf4115323e19fa372fbc1",
+  "settings": {
+    "data": "data/processed/uavvaste/data.yaml",
+    "reference": "reports/a/dataset",
+    "device": "0",
+    "imgsz": 640,
+    "nms_iou": 0.7,
+    "match_iou": 0.5,
+    "max_det": 300,
+    "confidence_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "benchmark_images": 20,
+    "benchmark_conf": 0.25,
+    "benchmark_repeats": 3,
+    "warmup": 3,
+    "examples_per_kind": 3
+  },
+  "device_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+  "images": [
+    "images/val/image_00000096.jpg",
+    "images/val/image_00000130.jpg",
+    "images/val/image_00000389.jpg",
+    "images/val/image_00000398.jpg",
+    "images/val/image_00000406.jpg",
+    "images/val/image_00000414.jpg",
+    "images/val/image_00000423.jpg",
+    "images/val/image_00000431.jpg",
+    "images/val/image_00000439.jpg",
+    "images/val/image_00000448.jpg",
+    "images/val/image_00000456.jpg",
+    "images/val/image_00000465.jpg",
+    "images/val/image_00000473.jpg",
+    "images/val/image_00000481.jpg",
+    "images/val/image_00000490.jpg",
+    "images/val/image_00000681.jpg",
+    "images/val/image_00000689.jpg",
+    "images/val/image_00000698.jpg",
+    "images/val/image_00000706.jpg",
+    "images/val/image_00000715.jpg"
+  ],
+  "samples_per_model": 60,
+  "method": "FP32, batch=1; 3 warmups; seed-42 shuffled model order per image/repeat; one decoded RGB image at a time; synchronized CUDA; excludes file decode/model load/drawing",
+  "stage_source": "Ultralytics Results.speed (ms); wall_ms additionally includes PIL copies, API overhead and CPU box extraction",
+  "models": {
+    "a_n_baseline_20": {
+      "wall_ms": {
+        "mean_ms": 86.67957333285206,
+        "median_ms": 90.03784999367781,
+        "p95_ms": 107.78658999042817
+      },
+      "preprocess": {
+        "mean_ms": 3.212083333346527,
+        "median_ms": 2.8560000064317137,
+        "p95_ms": 4.388025001389906
+      },
+      "inference": {
+        "mean_ms": 14.350476669399844,
+        "median_ms": 10.061799999675713,
+        "p95_ms": 26.708779993350607
+      },
+      "postprocess": {
+        "mean_ms": 4.15754999849014,
+        "median_ms": 3.3254000009037554,
+        "p95_ms": 8.43716499657603
+      }
+    },
+    "a_n_aug_20": {
+      "wall_ms": {
+        "mean_ms": 86.43813166272594,
+        "median_ms": 89.83620000071824,
+        "p95_ms": 108.48466999741504
+      },
+      "preprocess": {
+        "mean_ms": 3.189144998517198,
+        "median_ms": 2.8633999900193885,
+        "p95_ms": 4.392054988420568
+      },
+      "inference": {
+        "mean_ms": 14.120220004891356,
+        "median_ms": 9.47640000958927,
+        "p95_ms": 28.672985002049245
+      },
+      "postprocess": {
+        "mean_ms": 3.8526866662626467,
+        "median_ms": 3.0802999972365797,
+        "p95_ms": 7.373719984025225
+      }
+    },
+    "b_s_baseline_20": {
+      "wall_ms": {
+        "mean_ms": 104.50291166537984,
+        "median_ms": 104.83524999290239,
+        "p95_ms": 141.86988501169253
+      },
+      "preprocess": {
+        "mean_ms": 3.199853334808722,
+        "median_ms": 2.859400017769076,
+        "p95_ms": 5.003900003794115
+      },
+      "inference": {
+        "mean_ms": 32.144141666746386,
+        "median_ms": 13.840050014550798,
+        "p95_ms": 76.80496502580354
+      },
+      "postprocess": {
+        "mean_ms": 4.744736666907556,
+        "median_ms": 3.8863500085426494,
+        "p95_ms": 9.229734989639832
+      }
+    }
+  },
+  "measurements": {
+    "a_n_baseline_20": [
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 0,
+        "wall_ms": 76.99349999893457,
+        "preprocess": 2.6060999953188,
+        "inference": 11.065799975767732,
+        "postprocess": 1.886799989733845
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 0,
+        "wall_ms": 25.87020001374185,
+        "preprocess": 2.1826000011060387,
+        "inference": 5.53970001055859,
+        "postprocess": 5.752800003392622
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 0,
+        "wall_ms": 112.70739999599755,
+        "preprocess": 4.384200001368299,
+        "inference": 15.390699991257861,
+        "postprocess": 2.230900019640103
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 0,
+        "wall_ms": 101.83969998615794,
+        "preprocess": 2.884799992898479,
+        "inference": 11.32240000879392,
+        "postprocess": 4.343800013884902
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 0,
+        "wall_ms": 104.40820001531392,
+        "preprocess": 2.855800004908815,
+        "inference": 9.895299997879192,
+        "postprocess": 7.657899986952543
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 0,
+        "wall_ms": 107.52759999013506,
+        "preprocess": 2.5889000098686665,
+        "inference": 7.333199988352135,
+        "postprocess": 3.272400004789233
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 0,
+        "wall_ms": 91.87940001720563,
+        "preprocess": 2.660400001332164,
+        "inference": 5.552600021474063,
+        "postprocess": 3.5476999764796346
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 0,
+        "wall_ms": 91.36890000081621,
+        "preprocess": 2.7808999875560403,
+        "inference": 8.183800004189834,
+        "postprocess": 2.992099995026365
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 0,
+        "wall_ms": 67.85570000647567,
+        "preprocess": 2.4747000134084374,
+        "inference": 5.8976000000257045,
+        "postprocess": 2.2610999876633286
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 0,
+        "wall_ms": 78.355300007388,
+        "preprocess": 2.369800000451505,
+        "inference": 7.899200019892305,
+        "postprocess": 2.269499993417412
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 0,
+        "wall_ms": 70.69720001891255,
+        "preprocess": 2.544799994211644,
+        "inference": 7.128500001272187,
+        "postprocess": 2.0517999946605414
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 0,
+        "wall_ms": 79.408899997361,
+        "preprocess": 2.682399994228035,
+        "inference": 8.268700010376051,
+        "postprocess": 3.3783999970182776
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 0,
+        "wall_ms": 94.83560000080615,
+        "preprocess": 3.86399999842979,
+        "inference": 7.293200003914535,
+        "postprocess": 4.103899991605431
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 0,
+        "wall_ms": 80.01760000479408,
+        "preprocess": 2.4975000123959035,
+        "inference": 11.858400015626103,
+        "postprocess": 3.777299978537485
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 0,
+        "wall_ms": 75.1528000109829,
+        "preprocess": 2.4821000115480274,
+        "inference": 8.606899995356798,
+        "postprocess": 5.9631000040099025
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 0,
+        "wall_ms": 69.38859997899272,
+        "preprocess": 2.7897999971173704,
+        "inference": 6.455199996707961,
+        "postprocess": 3.7324000149965286
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 0,
+        "wall_ms": 63.651699980255216,
+        "preprocess": 2.30239998199977,
+        "inference": 5.532200011657551,
+        "postprocess": 2.1593999990727752
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 0,
+        "wall_ms": 67.91069998871535,
+        "preprocess": 2.7513999957591295,
+        "inference": 6.006000010529533,
+        "postprocess": 3.0852999771013856
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 0,
+        "wall_ms": 76.52949998737313,
+        "preprocess": 2.588599978480488,
+        "inference": 6.725400016875938,
+        "postprocess": 7.68360000802204
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 0,
+        "wall_ms": 73.84460000321269,
+        "preprocess": 3.169900010107085,
+        "inference": 7.872300018789247,
+        "postprocess": 2.494699991075322
+      },
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 1,
+        "wall_ms": 82.06970000173897,
+        "preprocess": 3.3699000196065754,
+        "inference": 9.56540001789108,
+        "postprocess": 4.113600007258356
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 1,
+        "wall_ms": 31.749999994644895,
+        "preprocess": 2.340200007893145,
+        "inference": 10.228300001472235,
+        "postprocess": 7.230899995192885
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 1,
+        "wall_ms": 92.12539999862202,
+        "preprocess": 2.8012999973725528,
+        "inference": 6.318900006590411,
+        "postprocess": 1.6111000149976462
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 1,
+        "wall_ms": 97.12839999701828,
+        "preprocess": 2.757699985522777,
+        "inference": 7.280999998329207,
+        "postprocess": 4.887600021902472
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 1,
+        "wall_ms": 97.77900000335649,
+        "preprocess": 2.725400001509115,
+        "inference": 7.562400016468018,
+        "postprocess": 2.876000013202429
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 1,
+        "wall_ms": 95.85740001057275,
+        "preprocess": 2.700499986531213,
+        "inference": 6.949200003873557,
+        "postprocess": 2.661900012753904
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 1,
+        "wall_ms": 114.88949999329634,
+        "preprocess": 2.7587999938987195,
+        "inference": 5.541500024264678,
+        "postprocess": 2.727899991441518
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 1,
+        "wall_ms": 90.23609998985194,
+        "preprocess": 2.746500016655773,
+        "inference": 7.4071999988518655,
+        "postprocess": 3.0953999958001077
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 1,
+        "wall_ms": 66.5154000162147,
+        "preprocess": 2.5550000136718154,
+        "inference": 5.652100022416562,
+        "postprocess": 2.485400007572025
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 1,
+        "wall_ms": 72.21729998127557,
+        "preprocess": 2.6261000020895153,
+        "inference": 6.4560999744571745,
+        "postprocess": 2.4659000046085566
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 1,
+        "wall_ms": 74.26270001451485,
+        "preprocess": 2.8141000075265765,
+        "inference": 8.789499988779426,
+        "postprocess": 2.2912999847903848
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 1,
+        "wall_ms": 89.3231000227388,
+        "preprocess": 3.640000009909272,
+        "inference": 24.777799990260974,
+        "postprocess": 2.6396000175736845
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 1,
+        "wall_ms": 91.28189997863956,
+        "preprocess": 4.071000003023073,
+        "inference": 24.17399999103509,
+        "postprocess": 5.0928999844472855
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 1,
+        "wall_ms": 96.28109997720458,
+        "preprocess": 3.541299985954538,
+        "inference": 24.250000016763806,
+        "postprocess": 3.904800018062815
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 1,
+        "wall_ms": 89.83959999750368,
+        "preprocess": 3.49949998781085,
+        "inference": 24.095999979181215,
+        "postprocess": 7.237500016344711
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 1,
+        "wall_ms": 100.18990002572536,
+        "preprocess": 5.525899992790073,
+        "inference": 24.210600007791072,
+        "postprocess": 8.431199996266514
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 1,
+        "wall_ms": 89.70440001576208,
+        "preprocess": 3.9263999788090587,
+        "inference": 23.71899998979643,
+        "postprocess": 4.794899985427037
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 1,
+        "wall_ms": 87.99780000117607,
+        "preprocess": 4.190699983155355,
+        "inference": 23.74130001408048,
+        "postprocess": 3.0898000113666058
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 1,
+        "wall_ms": 96.23119997559115,
+        "preprocess": 3.7958000029902905,
+        "inference": 23.836499982280657,
+        "postprocess": 12.0409999799449
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 1,
+        "wall_ms": 85.59810000588186,
+        "preprocess": 3.565299994079396,
+        "inference": 23.647399997571483,
+        "postprocess": 2.286000002641231
+      },
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 2,
+        "wall_ms": 89.22990001155995,
+        "preprocess": 4.2526999895926565,
+        "inference": 23.693499999353662,
+        "postprocess": 2.3193000233732164
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 2,
+        "wall_ms": 34.978500014403835,
+        "preprocess": 2.740399999311194,
+        "inference": 11.527800001204014,
+        "postprocess": 6.552000006195158
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 2,
+        "wall_ms": 91.2184999906458,
+        "preprocess": 2.8562000079546124,
+        "inference": 8.60509998165071,
+        "postprocess": 1.7099000106099993
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 2,
+        "wall_ms": 95.09970000362955,
+        "preprocess": 2.6753999991342425,
+        "inference": 9.687399986432865,
+        "postprocess": 3.674100007629022
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 2,
+        "wall_ms": 96.16149999783374,
+        "preprocess": 2.7728000131901354,
+        "inference": 8.245500008342788,
+        "postprocess": 3.2316000142600387
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 2,
+        "wall_ms": 101.73940000822768,
+        "preprocess": 2.532499987864867,
+        "inference": 8.484099991619587,
+        "postprocess": 8.550500002456829
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 2,
+        "wall_ms": 107.14249999728054,
+        "preprocess": 3.8330999959725887,
+        "inference": 15.26340001146309,
+        "postprocess": 4.415000003064051
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 2,
+        "wall_ms": 129.7816000005696,
+        "preprocess": 3.9225999789778143,
+        "inference": 15.67240001168102,
+        "postprocess": 2.983199985465035
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 2,
+        "wall_ms": 88.7139999831561,
+        "preprocess": 3.71000001905486,
+        "inference": 17.756500019459054,
+        "postprocess": 4.056699981447309
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 2,
+        "wall_ms": 83.49610000732355,
+        "preprocess": 3.434299986111,
+        "inference": 18.402399990009144,
+        "postprocess": 2.5536000030115247
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 2,
+        "wall_ms": 83.15799999400042,
+        "preprocess": 2.8858000005129725,
+        "inference": 20.168000017292798,
+        "postprocess": 3.0772999743930995
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 2,
+        "wall_ms": 84.86599999014288,
+        "preprocess": 3.406800009543076,
+        "inference": 21.149200008949265,
+        "postprocess": 3.624699980719015
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 2,
+        "wall_ms": 87.68859997508116,
+        "preprocess": 3.1407000205945224,
+        "inference": 21.1319999943953,
+        "postprocess": 7.999900000868365
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 2,
+        "wall_ms": 99.83169997576624,
+        "preprocess": 4.973999981302768,
+        "inference": 31.908700009807944,
+        "postprocess": 3.2555999932810664
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 2,
+        "wall_ms": 100.58100000605918,
+        "preprocess": 3.802199993515387,
+        "inference": 31.71199999633245,
+        "postprocess": 7.031999994069338
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 2,
+        "wall_ms": 94.6408000017982,
+        "preprocess": 4.460700001800433,
+        "inference": 30.8560999983456,
+        "postprocess": 4.182799981208518
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 2,
+        "wall_ms": 92.1311000129208,
+        "preprocess": 4.171000007772818,
+        "inference": 26.490499993087724,
+        "postprocess": 2.772499981801957
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 2,
+        "wall_ms": 99.59090000484139,
+        "preprocess": 3.985400020610541,
+        "inference": 26.011599984485656,
+        "postprocess": 4.260299989255145
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 2,
+        "wall_ms": 96.16499999538064,
+        "preprocess": 3.7508000095840544,
+        "inference": 26.119900023331866,
+        "postprocess": 10.2910999848973
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 2,
+        "wall_ms": 93.03849999560043,
+        "preprocess": 4.005100025096908,
+        "inference": 26.111200015293434,
+        "postprocess": 2.3013000027276576
+      }
+    ],
+    "a_n_aug_20": [
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 0,
+        "wall_ms": 72.67510000383481,
+        "preprocess": 2.9100000101607293,
+        "inference": 7.4730000051204115,
+        "postprocess": 2.6492000033613294
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 0,
+        "wall_ms": 25.9387000114657,
+        "preprocess": 2.1828000026289374,
+        "inference": 6.404000014299527,
+        "postprocess": 2.864100009901449
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 0,
+        "wall_ms": 98.0429999763146,
+        "preprocess": 2.85059999441728,
+        "inference": 7.944100012537092,
+        "postprocess": 2.8055000002495944
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 0,
+        "wall_ms": 110.60069999075495,
+        "preprocess": 2.876199985621497,
+        "inference": 7.530599978053942,
+        "postprocess": 5.9791999810840935
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 0,
+        "wall_ms": 94.6101000008639,
+        "preprocess": 2.7800000098068267,
+        "inference": 7.117399974958971,
+        "postprocess": 2.6781999913509935
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 0,
+        "wall_ms": 96.92559999530204,
+        "preprocess": 3.0292999872472137,
+        "inference": 7.244200009154156,
+        "postprocess": 3.418899985263124
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 0,
+        "wall_ms": 107.15090000303462,
+        "preprocess": 2.508800011128187,
+        "inference": 7.027400017250329,
+        "postprocess": 2.9850999999325722
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 0,
+        "wall_ms": 91.71280000009574,
+        "preprocess": 2.701699995668605,
+        "inference": 5.5247999844141304,
+        "postprocess": 2.4228999973274767
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 0,
+        "wall_ms": 67.92010000208393,
+        "preprocess": 2.539899986004457,
+        "inference": 5.49519999185577,
+        "postprocess": 2.45800000266172
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 0,
+        "wall_ms": 84.37890000641346,
+        "preprocess": 2.6544999855104834,
+        "inference": 13.025100022787228,
+        "postprocess": 5.619200004730374
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 0,
+        "wall_ms": 97.18670000438578,
+        "preprocess": 3.877599985571578,
+        "inference": 11.813199991593137,
+        "postprocess": 3.7441999884322286
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 0,
+        "wall_ms": 91.3581999775488,
+        "preprocess": 2.931499999249354,
+        "inference": 11.526500020409003,
+        "postprocess": 4.201100004138425
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 0,
+        "wall_ms": 88.2584999781102,
+        "preprocess": 2.678099990589544,
+        "inference": 15.429100021719933,
+        "postprocess": 6.525800010422245
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 0,
+        "wall_ms": 74.28609998896718,
+        "preprocess": 2.5064999936148524,
+        "inference": 9.44530000560917,
+        "postprocess": 3.9379000081680715
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 0,
+        "wall_ms": 67.4804000009317,
+        "preprocess": 2.522900002077222,
+        "inference": 6.395500007783994,
+        "postprocess": 3.8767000078223646
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 0,
+        "wall_ms": 68.7298999982886,
+        "preprocess": 2.4107999925035983,
+        "inference": 5.78419998055324,
+        "postprocess": 3.0780000088270754
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 0,
+        "wall_ms": 67.25469999946654,
+        "preprocess": 2.367899985983968,
+        "inference": 6.975899974349886,
+        "postprocess": 2.278100000694394
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 0,
+        "wall_ms": 68.61309998203069,
+        "preprocess": 2.624199987621978,
+        "inference": 6.434400012949482,
+        "postprocess": 2.2515000018756837
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 0,
+        "wall_ms": 72.24499998847023,
+        "preprocess": 2.774900000076741,
+        "inference": 6.131500005722046,
+        "postprocess": 4.647299996577203
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 0,
+        "wall_ms": 72.00370001373813,
+        "preprocess": 2.752700005657971,
+        "inference": 5.806600005598739,
+        "postprocess": 2.7365999994799495
+      },
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 1,
+        "wall_ms": 80.94760001404211,
+        "preprocess": 2.8045999933965504,
+        "inference": 6.674100004602224,
+        "postprocess": 2.2268999891821295
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 1,
+        "wall_ms": 24.17689998401329,
+        "preprocess": 2.3384000232908875,
+        "inference": 6.680799997411668,
+        "postprocess": 3.082599985646084
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 1,
+        "wall_ms": 89.48840000084601,
+        "preprocess": 2.589100011391565,
+        "inference": 5.503199994564056,
+        "postprocess": 2.485700009856373
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 1,
+        "wall_ms": 105.8103000104893,
+        "preprocess": 2.8190000157337636,
+        "inference": 9.234700002707541,
+        "postprocess": 4.849899996770546
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 1,
+        "wall_ms": 90.18400000059046,
+        "preprocess": 2.5634999910835177,
+        "inference": 6.5392000251449645,
+        "postprocess": 2.3438000062014908
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 1,
+        "wall_ms": 96.34189997450449,
+        "preprocess": 2.6033000031020492,
+        "inference": 10.041000001365319,
+        "postprocess": 4.148200008785352
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 1,
+        "wall_ms": 104.04040000867099,
+        "preprocess": 3.127899981336668,
+        "inference": 7.878900010837242,
+        "postprocess": 7.313499983865768
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 1,
+        "wall_ms": 111.97769999853335,
+        "preprocess": 4.194999986793846,
+        "inference": 5.626300000585616,
+        "postprocess": 8.517899987054989
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 1,
+        "wall_ms": 70.44429998495616,
+        "preprocess": 2.439900010358542,
+        "inference": 7.885899976827204,
+        "postprocess": 2.59429999277927
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 1,
+        "wall_ms": 69.0982999803964,
+        "preprocess": 2.4151999969035387,
+        "inference": 8.109300018986687,
+        "postprocess": 3.224600019166246
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 1,
+        "wall_ms": 69.09169998834841,
+        "preprocess": 2.3483000113628805,
+        "inference": 5.677900015143678,
+        "postprocess": 2.065100008621812
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 1,
+        "wall_ms": 89.02520002448,
+        "preprocess": 3.9176999998744577,
+        "inference": 24.146799987647682,
+        "postprocess": 2.7085999900009483
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 1,
+        "wall_ms": 98.92339998623356,
+        "preprocess": 4.429199994774535,
+        "inference": 24.27160000661388,
+        "postprocess": 4.657000012230128
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 1,
+        "wall_ms": 101.54169998713769,
+        "preprocess": 6.606199982343242,
+        "inference": 24.210199975641444,
+        "postprocess": 3.4863000037148595
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 1,
+        "wall_ms": 87.35709998290986,
+        "preprocess": 3.3700999920256436,
+        "inference": 24.153600010322407,
+        "postprocess": 4.813300009118393
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 1,
+        "wall_ms": 92.00330000021495,
+        "preprocess": 4.136200004722923,
+        "inference": 24.18450001277961,
+        "postprocess": 3.7834999966435134
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 1,
+        "wall_ms": 87.2502000129316,
+        "preprocess": 3.884899982949719,
+        "inference": 23.69969998835586,
+        "postprocess": 4.6064000052865595
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 1,
+        "wall_ms": 89.15409998735413,
+        "preprocess": 4.0145000093616545,
+        "inference": 23.790700011886656,
+        "postprocess": 2.711800014367327
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 1,
+        "wall_ms": 98.94959998200648,
+        "preprocess": 3.8367999950423837,
+        "inference": 23.786400008248165,
+        "postprocess": 6.119600002421066
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 1,
+        "wall_ms": 88.46549998270348,
+        "preprocess": 3.8172999920789152,
+        "inference": 23.69690002524294,
+        "postprocess": 3.1912999984342605
+      },
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 2,
+        "wall_ms": 89.08689999952912,
+        "preprocess": 4.278700012946501,
+        "inference": 24.009100015973672,
+        "postprocess": 2.8359999996609986
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 2,
+        "wall_ms": 27.25409998674877,
+        "preprocess": 2.792600018437952,
+        "inference": 8.499200019286945,
+        "postprocess": 3.0969000072218478
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 2,
+        "wall_ms": 90.4302999842912,
+        "preprocess": 2.9755000141449273,
+        "inference": 8.220500021707267,
+        "postprocess": 2.351999981328845
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 2,
+        "wall_ms": 108.37329999776557,
+        "preprocess": 2.8286000015214086,
+        "inference": 9.94000001810491,
+        "postprocess": 11.333500006003305
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 2,
+        "wall_ms": 93.21190000628121,
+        "preprocess": 2.514599997084588,
+        "inference": 8.270599995739758,
+        "postprocess": 2.727400016738102
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 2,
+        "wall_ms": 95.44990002177656,
+        "preprocess": 3.2272000098600984,
+        "inference": 9.50750001356937,
+        "postprocess": 2.872600016416982
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 2,
+        "wall_ms": 97.75220000301488,
+        "preprocess": 2.3240000009536743,
+        "inference": 8.144699997501448,
+        "postprocess": 8.72809998691082
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 2,
+        "wall_ms": 122.7346999803558,
+        "preprocess": 2.732799999648705,
+        "inference": 16.800800018245354,
+        "postprocess": 3.7734000070486218
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 2,
+        "wall_ms": 82.73940000799485,
+        "preprocess": 2.4822999839670956,
+        "inference": 17.653699993388727,
+        "postprocess": 3.0126999772619456
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 2,
+        "wall_ms": 88.65249998052604,
+        "preprocess": 3.0140999879222363,
+        "inference": 18.971000012243167,
+        "postprocess": 2.9138000099919736
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 2,
+        "wall_ms": 82.65209998353384,
+        "preprocess": 3.139199980068952,
+        "inference": 20.131700002821162,
+        "postprocess": 2.292499993927777
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 2,
+        "wall_ms": 84.74599997862242,
+        "preprocess": 2.8775999962817878,
+        "inference": 20.113900012802333,
+        "postprocess": 2.9215999820735306
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 2,
+        "wall_ms": 85.6019000057131,
+        "preprocess": 3.189600014593452,
+        "inference": 21.229400008451194,
+        "postprocess": 4.0240999951492995
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 2,
+        "wall_ms": 97.27890000795014,
+        "preprocess": 4.050799994729459,
+        "inference": 31.748400011565536,
+        "postprocess": 5.495799996424466
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 2,
+        "wall_ms": 100.56580000673421,
+        "preprocess": 4.2283000075258315,
+        "inference": 31.62759999395348,
+        "postprocess": 4.823199997190386
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 2,
+        "wall_ms": 93.6848999990616,
+        "preprocess": 3.6379999946802855,
+        "inference": 28.67030000197701,
+        "postprocess": 3.0365999846253544
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 2,
+        "wall_ms": 94.30060000158846,
+        "preprocess": 4.298600018955767,
+        "inference": 28.72400000342168,
+        "postprocess": 2.8055000002495944
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 2,
+        "wall_ms": 95.6020999874454,
+        "preprocess": 5.922799988184124,
+        "inference": 26.516800018725917,
+        "postprocess": 2.6101999974343926
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 2,
+        "wall_ms": 99.33739999542013,
+        "preprocess": 4.390099988086149,
+        "inference": 26.054800022393465,
+        "postprocess": 6.688800000119954
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 2,
+        "wall_ms": 95.1892000157386,
+        "preprocess": 3.7053000123705715,
+        "inference": 26.059499999973923,
+        "postprocess": 2.7286999975331128
+      }
+    ],
+    "b_s_baseline_20": [
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 0,
+        "wall_ms": 79.6769000007771,
+        "preprocess": 2.811200014548376,
+        "inference": 12.498399999458343,
+        "postprocess": 3.5755000135395676
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 0,
+        "wall_ms": 32.556199992541224,
+        "preprocess": 2.340299979550764,
+        "inference": 12.581999995745718,
+        "postprocess": 4.541900008916855
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 0,
+        "wall_ms": 102.16519999084994,
+        "preprocess": 2.740399999311194,
+        "inference": 12.609299999894574,
+        "postprocess": 2.5726000021677464
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 0,
+        "wall_ms": 113.90890000620857,
+        "preprocess": 2.7865000010933727,
+        "inference": 12.538000009953976,
+        "postprocess": 5.169699987163767
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 0,
+        "wall_ms": 106.62009997759014,
+        "preprocess": 2.7165999927092344,
+        "inference": 13.667100021848455,
+        "postprocess": 6.315700011327863
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 0,
+        "wall_ms": 106.80169999250211,
+        "preprocess": 3.505800006678328,
+        "inference": 12.438999983714893,
+        "postprocess": 4.271800018614158
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 0,
+        "wall_ms": 106.17199999978766,
+        "preprocess": 3.110299992840737,
+        "inference": 12.348100019153208,
+        "postprocess": 3.8914000033400953
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 0,
+        "wall_ms": 95.24680001777597,
+        "preprocess": 3.0547000060323626,
+        "inference": 12.340699991909787,
+        "postprocess": 3.9061999996192753
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 0,
+        "wall_ms": 76.59359998069704,
+        "preprocess": 2.623500011395663,
+        "inference": 12.342700007138774,
+        "postprocess": 3.0635000148322433
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 0,
+        "wall_ms": 76.80509999045171,
+        "preprocess": 2.5307000032626092,
+        "inference": 12.594599975273013,
+        "postprocess": 2.93210000381805
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 0,
+        "wall_ms": 77.94410001952201,
+        "preprocess": 2.6391999854240566,
+        "inference": 12.653699988732114,
+        "postprocess": 2.8494000143837184
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 0,
+        "wall_ms": 79.282399994554,
+        "preprocess": 2.5254000211134553,
+        "inference": 12.560200004372746,
+        "postprocess": 5.5133000132627785
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 0,
+        "wall_ms": 90.71759998914786,
+        "preprocess": 2.4711000151000917,
+        "inference": 14.01300000725314,
+        "postprocess": 6.652800017036498
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 0,
+        "wall_ms": 78.8489000115078,
+        "preprocess": 2.6941999967675656,
+        "inference": 12.343899987172335,
+        "postprocess": 3.416999999899417
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 0,
+        "wall_ms": 75.97899998654611,
+        "preprocess": 2.381700003752485,
+        "inference": 12.33300002058968,
+        "postprocess": 5.365199991501868
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 0,
+        "wall_ms": 77.85649999277666,
+        "preprocess": 2.534600003855303,
+        "inference": 12.336600018898025,
+        "postprocess": 3.607399994507432
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 0,
+        "wall_ms": 85.32509999349713,
+        "preprocess": 3.487900015898049,
+        "inference": 13.183899980504066,
+        "postprocess": 5.841400008648634
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 0,
+        "wall_ms": 74.84459999250248,
+        "preprocess": 2.8052999987266958,
+        "inference": 12.415500008501112,
+        "postprocess": 2.2592000022996217
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 0,
+        "wall_ms": 77.03619997482747,
+        "preprocess": 2.4062000156845897,
+        "inference": 12.361300003249198,
+        "postprocess": 6.695300020510331
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 0,
+        "wall_ms": 74.71509999595582,
+        "preprocess": 2.6089000166393816,
+        "inference": 12.31799999368377,
+        "postprocess": 2.7941000007558614
+      },
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 1,
+        "wall_ms": 104.14519999176264,
+        "preprocess": 2.645799977472052,
+        "inference": 12.408999988110736,
+        "postprocess": 12.529499974334612
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 1,
+        "wall_ms": 32.18500001821667,
+        "preprocess": 2.2950000129640102,
+        "inference": 12.376300001051277,
+        "postprocess": 4.427600011695176
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 1,
+        "wall_ms": 97.75280000758357,
+        "preprocess": 2.9076000209897757,
+        "inference": 12.67220001318492,
+        "postprocess": 2.3705000057816505
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 1,
+        "wall_ms": 103.14940000534989,
+        "preprocess": 2.966800006106496,
+        "inference": 12.341299996478483,
+        "postprocess": 7.647399994311854
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 1,
+        "wall_ms": 98.25680000358261,
+        "preprocess": 2.919499995186925,
+        "inference": 12.325899995630607,
+        "postprocess": 2.8420999879017472
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 1,
+        "wall_ms": 96.5796000091359,
+        "preprocess": 3.06400001863949,
+        "inference": 12.60839999304153,
+        "postprocess": 2.946599997812882
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 1,
+        "wall_ms": 101.50040002190508,
+        "preprocess": 2.5568999990355223,
+        "inference": 12.683100008871406,
+        "postprocess": 4.172000015387312
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 1,
+        "wall_ms": 100.92200001236051,
+        "preprocess": 2.4836999946273863,
+        "inference": 12.381099979393184,
+        "postprocess": 3.959900001063943
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 1,
+        "wall_ms": 75.7863000035286,
+        "preprocess": 2.7131999959237874,
+        "inference": 12.382400018395856,
+        "postprocess": 3.2457999768666923
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 1,
+        "wall_ms": 76.92379999207333,
+        "preprocess": 2.753499982645735,
+        "inference": 12.39519999944605,
+        "postprocess": 2.9372999852057546
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 1,
+        "wall_ms": 79.47200001217425,
+        "preprocess": 2.6797000027727336,
+        "inference": 12.515700014773756,
+        "postprocess": 2.5624999834690243
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 1,
+        "wall_ms": 125.74540000059642,
+        "preprocess": 3.4023000043816864,
+        "inference": 62.946699996246025,
+        "postprocess": 3.1384000030811876
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 1,
+        "wall_ms": 132.61440000496805,
+        "preprocess": 3.589800006011501,
+        "inference": 61.84409998240881,
+        "postprocess": 8.216099988203496
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 1,
+        "wall_ms": 131.72389997635037,
+        "preprocess": 3.9991999801713973,
+        "inference": 61.94260000484064,
+        "postprocess": 8.170499990228564
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 1,
+        "wall_ms": 136.55190001009032,
+        "preprocess": 5.007700005080551,
+        "inference": 61.98919998132624,
+        "postprocess": 10.91189999715425
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 1,
+        "wall_ms": 130.5784999858588,
+        "preprocess": 3.8357000157702714,
+        "inference": 61.957099998835474,
+        "postprocess": 4.724500002339482
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 1,
+        "wall_ms": 141.7158000112977,
+        "preprocess": 5.065800010925159,
+        "inference": 61.2179999880027,
+        "postprocess": 2.577799983555451
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 1,
+        "wall_ms": 123.63570000161417,
+        "preprocess": 4.139900003792718,
+        "inference": 61.1557999800425,
+        "postprocess": 2.3686999920755625
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 1,
+        "wall_ms": 140.31300001079217,
+        "preprocess": 3.975799976615235,
+        "inference": 61.13220000406727,
+        "postprocess": 17.345500004012138
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 1,
+        "wall_ms": 125.87950000306591,
+        "preprocess": 3.773500007810071,
+        "inference": 61.14989999332465,
+        "postprocess": 3.120900015346706
+      },
+      {
+        "image": "images/val/image_00000096.jpg",
+        "repeat": 2,
+        "wall_ms": 132.03559999237768,
+        "preprocess": 5.311999993864447,
+        "inference": 61.31950000417419,
+        "postprocess": 3.8813000137452036
+      },
+      {
+        "image": "images/val/image_00000130.jpg",
+        "repeat": 2,
+        "wall_ms": 36.46030000527389,
+        "preprocess": 2.35719999182038,
+        "inference": 18.378599983407184,
+        "postprocess": 3.4630000009201467
+      },
+      {
+        "image": "images/val/image_00000389.jpg",
+        "repeat": 2,
+        "wall_ms": 102.65759998583235,
+        "preprocess": 2.5461000041104853,
+        "inference": 18.27850000699982,
+        "postprocess": 2.564000023994595
+      },
+      {
+        "image": "images/val/image_00000398.jpg",
+        "repeat": 2,
+        "wall_ms": 102.65939999953844,
+        "preprocess": 2.7458999829832464,
+        "inference": 18.44760001404211,
+        "postprocess": 4.0040000167209655
+      },
+      {
+        "image": "images/val/image_00000406.jpg",
+        "repeat": 2,
+        "wall_ms": 118.61980002140626,
+        "preprocess": 2.7091999945696443,
+        "inference": 18.35539998137392,
+        "postprocess": 3.0126000056043267
+      },
+      {
+        "image": "images/val/image_00000414.jpg",
+        "repeat": 2,
+        "wall_ms": 105.52529999404214,
+        "preprocess": 2.648800000315532,
+        "inference": 18.328000005567446,
+        "postprocess": 3.328099992359057
+      },
+      {
+        "image": "images/val/image_00000423.jpg",
+        "repeat": 2,
+        "wall_ms": 127.00090001453646,
+        "preprocess": 2.7540000155568123,
+        "inference": 35.13880001264624,
+        "postprocess": 3.2961000106297433
+      },
+      {
+        "image": "images/val/image_00000431.jpg",
+        "repeat": 2,
+        "wall_ms": 128.9478999970015,
+        "preprocess": 2.738800016231835,
+        "inference": 39.51540001435205,
+        "postprocess": 4.126699990592897
+      },
+      {
+        "image": "images/val/image_00000439.jpg",
+        "repeat": 2,
+        "wall_ms": 106.7075000028126,
+        "preprocess": 3.0809000018052757,
+        "inference": 40.42949998984113,
+        "postprocess": 3.798099991399795
+      },
+      {
+        "image": "images/val/image_00000448.jpg",
+        "repeat": 2,
+        "wall_ms": 112.85469998256303,
+        "preprocess": 3.1574000022374094,
+        "inference": 42.691800015745685,
+        "postprocess": 6.0394000029191375
+      },
+      {
+        "image": "images/val/image_00000456.jpg",
+        "repeat": 2,
+        "wall_ms": 111.6586999851279,
+        "preprocess": 3.257500007748604,
+        "inference": 46.50899997795932,
+        "postprocess": 2.3347999958787113
+      },
+      {
+        "image": "images/val/image_00000465.jpg",
+        "repeat": 2,
+        "wall_ms": 114.1535000060685,
+        "preprocess": 3.2460000074934214,
+        "inference": 49.2120000126306,
+        "postprocess": 3.9747999981045723
+      },
+      {
+        "image": "images/val/image_00000473.jpg",
+        "repeat": 2,
+        "wall_ms": 148.56109998072498,
+        "preprocess": 4.2486999882385135,
+        "inference": 78.44610000029206,
+        "postprocess": 7.393999985652044
+      },
+      {
+        "image": "images/val/image_00000481.jpg",
+        "repeat": 2,
+        "wall_ms": 141.37609998579137,
+        "preprocess": 3.701599984196946,
+        "inference": 77.40139999077655,
+        "postprocess": 4.658299993025139
+      },
+      {
+        "image": "images/val/image_00000490.jpg",
+        "repeat": 2,
+        "wall_ms": 149.2547999951057,
+        "preprocess": 4.003099980764091,
+        "inference": 77.07219998701476,
+        "postprocess": 6.59319999977015
+      },
+      {
+        "image": "images/val/image_00000681.jpg",
+        "repeat": 2,
+        "wall_ms": 144.79750001919456,
+        "preprocess": 5.003700003726408,
+        "inference": 76.79090002784505,
+        "postprocess": 3.880399977788329
+      },
+      {
+        "image": "images/val/image_00000689.jpg",
+        "repeat": 2,
+        "wall_ms": 137.8952999948524,
+        "preprocess": 4.402900027344003,
+        "inference": 70.7103000022471,
+        "postprocess": 3.8533000042662024
+      },
+      {
+        "image": "images/val/image_00000698.jpg",
+        "repeat": 2,
+        "wall_ms": 136.17499999236315,
+        "preprocess": 4.398399993078783,
+        "inference": 66.14969999645837,
+        "postprocess": 6.868099997518584
+      },
+      {
+        "image": "images/val/image_00000706.jpg",
+        "repeat": 2,
+        "wall_ms": 137.88919997750781,
+        "preprocess": 3.9772999880369753,
+        "inference": 65.32410002546385,
+        "postprocess": 9.141199989244342
+      },
+      {
+        "image": "images/val/image_00000715.jpg",
+        "repeat": 2,
+        "wall_ms": 130.41710000834428,
+        "preprocess": 4.151800007093698,
+        "inference": 65.24450000142679,
+        "postprocess": 3.0217999883461744
+      }
+    ]
+  }
+}

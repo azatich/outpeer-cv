@@ -17,6 +17,14 @@ REPO = Path(__file__).resolve().parents[1]
 
 
 class TrainingContractTests(unittest.TestCase):
+    def test_participant_b_writes_to_b_without_changing_a_default(self):
+        plan = self.plan(participant="b")
+        self.assertEqual(plan["run_dir"].parent, self.root / "runs" / "b")
+        self.assertEqual(plan["handoff_dir"].parent, self.root / "models" / "b")
+        self.assertEqual(self.plan()["run_dir"].parent, self.root / "runs" / "a")
+        with self.assertRaisesRegex(ConfigurationError, "participant"):
+            self.plan(participant="../unsafe")
+
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
         self.addCleanup(self.temporary.cleanup)

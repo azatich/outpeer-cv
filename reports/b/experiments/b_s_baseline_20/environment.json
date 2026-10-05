@@ -1,0 +1,16 @@
+{
+  "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+  "platform": "Windows-11-10.0.26200-SP0",
+  "packages": {
+    "ultralytics": "8.3.228",
+    "torch": "2.6.0+cu124",
+    "torchvision": "0.21.0+cu124",
+    "numpy": "2.2.6",
+    "PyYAML": "6.0.3",
+    "Pillow": "11.3.0"
+  },
+  "git": {
+    "revision": "461811d17355076686edbedea61c81e8429d6dca",
+    "dirty": true
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "health": "ok",
+  "real_photo_analysis": "passed",
+  "device": "cpu",
+  "detections": 1,
+  "stale_result_reset": "passed",
+  "method": "Streamlit AppTest, upload widget supplied with local image bytes; real model predict, no model mock"
+}

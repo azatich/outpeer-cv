@@ -1,0 +1,34 @@
+{
+  "split": "val",
+  "model": "b_s_baseline_20",
+  "conf": 0.4,
+  "match_iou": 0.5,
+  "imgsz": 640,
+  "size_bins": {
+    "short_side_lt_8px": {
+      "objects": 159,
+      "found": 71,
+      "recall": 0.44654088050314467
+    },
+    "short_side_8_to_16px": {
+      "objects": 300,
+      "found": 228,
+      "recall": 0.76
+    },
+    "short_side_ge_16px": {
+      "objects": 124,
+      "found": 90,
+      "recall": 0.7258064516129032
+    }
+  },
+  "false_positive_overlap": {
+    "overlap_lt_0.1": 82,
+    "overlap_0.1_to_match_iou": 33,
+    "duplicate_or_assignment_conflict": 5
+  },
+  "notes": [
+    "Short side is measured after aspect-preserving resize to imgsz, before padding.",
+    "FP overlap groups are geometric descriptions, not proven causes or annotation errors.",
+    "A poorly localized prediction can count as both FP and FN for the same object."
+  ]
+}

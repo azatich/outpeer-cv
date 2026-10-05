@@ -1,0 +1,5 @@
+path: C:\Home\outpeer_cv\data\processed\uavvaste
+names:
+  0: rubbish
+train: C:\Home\outpeer_cv\data\processed\uavvaste\images\train
+val: C:\Home\outpeer_cv\data\processed\uavvaste\images\val

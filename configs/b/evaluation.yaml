@@ -1,0 +1,21 @@
+data: data/processed/uavvaste/data.yaml
+reference: reports/a/dataset
+device: auto
+imgsz: 640
+nms_iou: 0.7
+match_iou: 0.5
+max_det: 300
+# AP is computed separately with conf=0.001; this grid selects the display threshold.
+confidence_grid: [0.05, 0.10, 0.15, 0.20, 0.25, 0.30, 0.35, 0.40, 0.45, 0.50, 0.60, 0.70, 0.80]
+benchmark_images: 20
+benchmark_conf: 0.25
+benchmark_repeats: 3
+warmup: 3
+examples_per_kind: 3
+models:
+  - name: a_n_baseline_20
+    weights: models/a/a_n_baseline_20/best.pt
+  - name: a_n_aug_20
+    weights: models/a/a_n_aug_20/best.pt
+  - name: b_s_baseline_20
+    weights: models/b/b_s_baseline_20/best.pt

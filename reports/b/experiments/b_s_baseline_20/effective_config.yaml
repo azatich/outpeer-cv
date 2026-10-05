@@ -1,0 +1,78 @@
+name: b_s_baseline_20
+model: yolov8s.pt
+data: data/processed/uavvaste/data.yaml
+seed: 42
+train:
+  epochs: 20
+  imgsz: 640
+  batch: 4
+  workers: 0
+  patience: 15
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  cos_lr: true
+  close_mosaic: 10
+  fraction: 1.0
+  cache: ram
+  amp: false
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0
+model_resolved: C:\Home\outpeer_cv\models\pretrained\yolov8s.pt
+train_arguments:
+  epochs: 20
+  imgsz: 640
+  batch: 4
+  workers: 0
+  patience: 15
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  cos_lr: true
+  close_mosaic: 10
+  fraction: 1.0
+  cache: ram
+  amp: false
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0
+  data: C:\Home\outpeer_cv\runs\b\b_s_baseline_20\dataset.resolved.yaml
+  project: C:\Home\outpeer_cv\runs\b
+  name: b_s_baseline_20
+  exist_ok: true
+  seed: 42
+  deterministic: true
+  device: '0'
+  pretrained: true
+  val: true
+  split: val
+  save: true
+  plots: true
+  resume: false
+runtime:
+  amp: false
+  device: '0'
