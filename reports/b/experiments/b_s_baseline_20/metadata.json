@@ -1,0 +1,236 @@
+{
+  "schema_version": 1,
+  "status": "complete",
+  "name": "b_s_baseline_20",
+  "created_at": "2026-10-05T07:38:39.336232+00:00",
+  "task": "detect",
+  "model": "yolov8s.pt",
+  "weights": "best.pt",
+  "weights_sha256": "1f193df59d8893d004fa6d8999b5b00f737fbb4792fbd531ffaa58e6fc3c28c2",
+  "classes": {
+    "0": "rubbish"
+  },
+  "image_size": 640,
+  "seed": 42,
+  "device": "0",
+  "validation": {
+    "split": "val",
+    "metrics": {
+      "metrics/precision(B)": 0.7968377341244173,
+      "metrics/recall(B)": 0.6323924739173313,
+      "metrics/mAP50(B)": 0.7209261312808587,
+      "metrics/mAP50-95(B)": 0.3911557647150542,
+      "fitness": 0.3911557647150542
+    },
+    "test_evaluated": false
+  },
+  "provenance": {
+    "data_yaml_sha256": "edc5d51ce7492435feff5dc0161d4ece5d34c443c1f4528abb5ef9eac035be25",
+    "dataset_manifest_sha256": "e7c9ce3a01c8c5bf9c828912a8f0d5c8213305c3dcbe885880215da78036bb76",
+    "source_config_sha256": "f0a961be92ac544b0cf9c14809b25d8d96e02b05a291af1cc4bcb08171b65680",
+    "pretrained_weights_sha256": "1f47a78bf100391c2a140b7ac73a1caae18c32779be7d310658112f7ac9aa78a"
+  },
+  "environment": {
+    "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "ultralytics": "8.3.228",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.2.6",
+      "PyYAML": "6.0.3",
+      "Pillow": "11.3.0"
+    },
+    "git": {
+      "revision": "461811d17355076686edbedea61c81e8429d6dca",
+      "dirty": true
+    }
+  },
+  "dataset": {
+    "schema_version": 1,
+    "source_annotations_sha256": "2779d40ea98db05d9fb0ea6b0cdbf181a441ce663cf7b81653c81f2f0ef8b403",
+    "groups_sha256": "a8c3960e4c96ea93cce4d979f6af20205f913169b7429858f5397f9c1ea2ce35",
+    "source_annotations": "C:\\Home\\outpeer_cv\\data\\raw\\uavvaste\\annotations.json",
+    "source_images": "C:\\Home\\outpeer_cv\\data\\raw\\uavvaste\\images",
+    "seed": 42,
+    "split_strategy": "group",
+    "split_ratios": {
+      "train": 0.7,
+      "val": 0.2,
+      "test": 0.1
+    },
+    "independent_groups": 17,
+    "categories": [
+      {
+        "source_id": 0,
+        "id": 0,
+        "name": "rubbish"
+      }
+    ],
+    "category_mapping": {
+      "0": 0
+    },
+    "counts": {
+      "source_images": 772,
+      "unique_images": 772,
+      "duplicates_removed": 0,
+      "output_images": 772,
+      "objects": 3718,
+      "unique_source_objects": 3718,
+      "source_objects_by_class": {
+        "0": 3718
+      },
+      "by_split": {
+        "train": {
+          "images": 522,
+          "objects": 2810,
+          "negative_images": 0,
+          "source_images": 522
+        },
+        "val": {
+          "images": 160,
+          "objects": 583,
+          "negative_images": 0,
+          "source_images": 160
+        },
+        "test": {
+          "images": 90,
+          "objects": 325,
+          "negative_images": 0,
+          "source_images": 90
+        }
+      }
+    },
+    "validation": {
+      "annotations": 3718,
+      "clipped_boxes": 0,
+      "crowd_boxes": 0,
+      "exif_images": 29,
+      "multi_frame_images": 40,
+      "jpeg_end_marker_repairs": 4
+    },
+    "image_policy": {
+      "exif": "raw-pixels",
+      "first_frame": true,
+      "repair_jpeg_end_marker": true
+    },
+    "pixel_hash": "sha256(big-endian uint32 width,height + decoded RGB bytes)",
+    "tiling": {
+      "enabled": false,
+      "tile_size": null,
+      "overlap": null,
+      "box_policy": "retain_every_positive_intersection"
+    },
+    "limitations": [
+      "COCO-listed images without annotations are treated as negatives; annotation completeness must be verified.",
+      "Exact RGB duplicates are removed; near-duplicates require verified flight/scene groups.",
+      "Actual split ratios can differ from 70/20/10 because complete groups are kept together.",
+      "Group isolation is only as reliable as the supplied group metadata; verify flight/location boundaries.",
+      "UNVERIFIED FILENAME GROUPS: series grouping is not confirmed flight/location separation; scores are preliminary.",
+      "EXIF orientation is removed without rotating pixels; annotations must refer to raw pixel coordinates.",
+      "Only frame 0 of multi-frame images is exported; annotations must describe that frame."
+    ],
+    "files": {
+      "data_yaml": "data.yaml",
+      "split_manifest": "split_manifest.csv",
+      "tiles": "tiles.csv"
+    }
+  },
+  "effective_config": {
+    "name": "b_s_baseline_20",
+    "model": "yolov8s.pt",
+    "data": "data/processed/uavvaste/data.yaml",
+    "seed": 42,
+    "train": {
+      "epochs": 20,
+      "imgsz": 640,
+      "batch": 4,
+      "workers": 0,
+      "patience": 15,
+      "optimizer": "AdamW",
+      "lr0": 0.001,
+      "lrf": 0.01,
+      "weight_decay": 0.0005,
+      "warmup_epochs": 3.0,
+      "cos_lr": true,
+      "close_mosaic": 10,
+      "fraction": 1.0,
+      "cache": "ram",
+      "amp": false
+    },
+    "augmentation": {
+      "hsv_h": 0.015,
+      "hsv_s": 0.4,
+      "hsv_v": 0.3,
+      "degrees": 0.0,
+      "translate": 0.1,
+      "scale": 0.5,
+      "shear": 0.0,
+      "perspective": 0.0,
+      "flipud": 0.0,
+      "fliplr": 0.5,
+      "mosaic": 1.0,
+      "mixup": 0.0
+    },
+    "model_resolved": "C:\\Home\\outpeer_cv\\models\\pretrained\\yolov8s.pt",
+    "train_arguments": {
+      "epochs": 20,
+      "imgsz": 640,
+      "batch": 4,
+      "workers": 0,
+      "patience": 15,
+      "optimizer": "AdamW",
+      "lr0": 0.001,
+      "lrf": 0.01,
+      "weight_decay": 0.0005,
+      "warmup_epochs": 3.0,
+      "cos_lr": true,
+      "close_mosaic": 10,
+      "fraction": 1.0,
+      "cache": "ram",
+      "amp": false,
+      "hsv_h": 0.015,
+      "hsv_s": 0.4,
+      "hsv_v": 0.3,
+      "degrees": 0.0,
+      "translate": 0.1,
+      "scale": 0.5,
+      "shear": 0.0,
+      "perspective": 0.0,
+      "flipud": 0.0,
+      "fliplr": 0.5,
+      "mosaic": 1.0,
+      "mixup": 0.0,
+      "data": "C:\\Home\\outpeer_cv\\runs\\b\\b_s_baseline_20\\dataset.resolved.yaml",
+      "project": "C:\\Home\\outpeer_cv\\runs\\b",
+      "name": "b_s_baseline_20",
+      "exist_ok": true,
+      "seed": 42,
+      "deterministic": true,
+      "device": "0",
+      "pretrained": true,
+      "val": true,
+      "split": "val",
+      "save": true,
+      "plots": true,
+      "resume": false
+    },
+    "runtime": {
+      "amp": false,
+      "device": "0"
+    }
+  },
+  "limitations": [
+    "COCO-listed images without annotations are treated as negatives; annotation completeness must be verified.",
+    "Exact RGB duplicates are removed; near-duplicates require verified flight/scene groups.",
+    "Actual split ratios can differ from 70/20/10 because complete groups are kept together.",
+    "Group isolation is only as reliable as the supplied group metadata; verify flight/location boundaries.",
+    "UNVERIFIED FILENAME GROUPS: series grouping is not confirmed flight/location separation; scores are preliminary.",
+    "EXIF orientation is removed without rotating pixels; annotations must refer to raw pixel coordinates.",
+    "Only frame 0 of multi-frame images is exported; annotations must describe that frame."
+  ],
+  "notes": [
+    "Validation was used for training/checkpoint selection; these are not test metrics.",
+    "One-epoch smoke runs only check integration and do not establish model quality."
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "tp": [
+    {
+      "image": "images/test/image_00000499.jpg",
+      "file": "examples/image_00000499.jpg"
+    },
+    {
+      "image": "images/test/image_00000500.jpg",
+      "file": "examples/image_00000500.jpg"
+    },
+    {
+      "image": "images/test/image_00000501.jpg",
+      "file": "examples/image_00000501.jpg"
+    }
+  ],
+  "fp": [
+    {
+      "image": "images/test/image_00000499.jpg",
+      "file": "examples/image_00000499.jpg"
+    },
+    {
+      "image": "images/test/image_00000501.jpg",
+      "file": "examples/image_00000501.jpg"
+    },
+    {
+      "image": "images/test/image_00000517.jpg",
+      "file": "examples/image_00000517.jpg"
+    }
+  ],
+  "fn": [
+    {
+      "image": "images/test/image_00000498.jpg",
+      "file": "examples/image_00000498.jpg"
+    },
+    {
+      "image": "images/test/image_00000499.jpg",
+      "file": "examples/image_00000499.jpg"
+    },
+    {
+      "image": "images/test/image_00000501.jpg",
+      "file": "examples/image_00000501.jpg"
+    }
+  ]
+}

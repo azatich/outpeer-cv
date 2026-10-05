@@ -1,0 +1,1203 @@
+{
+  "schema_version": 1,
+  "split": "val",
+  "test_evaluated": false,
+  "created_at": "2026-10-05T07:41:46.830428+00:00",
+  "dataset_identity": "8956a20832a85f145ec0f1c13bb5070273b674c52b12eefcd16c56b61d4795dc",
+  "settings": {
+    "data": "data/processed/uavvaste/data.yaml",
+    "reference": "reports/a/dataset",
+    "device": "0",
+    "imgsz": 640,
+    "nms_iou": 0.7,
+    "match_iou": 0.5,
+    "max_det": 300,
+    "confidence_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "benchmark_images": 20,
+    "benchmark_conf": 0.25,
+    "benchmark_repeats": 3,
+    "warmup": 3,
+    "examples_per_kind": 3
+  },
+  "environment": {
+    "python": "3.13.3 (tags/v3.13.3:6280bb5, Apr  8 2025, 14:47:33) [MSC v.1943 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "ultralytics": "8.3.228",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.2.6",
+      "PyYAML": "6.0.3",
+      "Pillow": "11.3.0"
+    },
+    "git": {
+      "revision": "461811d17355076686edbedea61c81e8429d6dca",
+      "dirty": true
+    }
+  },
+  "models": [
+    {
+      "name": "a_n_baseline_20",
+      "weights": "models/a/a_n_baseline_20/best.pt",
+      "weights_sha256": "adf45329247f1f338460916deda0af8ee59f248d0f579051000a5478be629d5c",
+      "split": "val",
+      "images": 160,
+      "objects": 583,
+      "metrics": {
+        "precision": 0.6876286926759185,
+        "recall": 0.6432246998284734,
+        "mAP50": 0.6677912703181337,
+        "mAP50_95": 0.33592215420437826
+      },
+      "operating_point": {
+        "conf": 0.3,
+        "tp": 375,
+        "fp": 162,
+        "fn": 208,
+        "precision": 0.6983240223463687,
+        "recall": 0.6432246998284734,
+        "f1": 0.6696428571428571
+      },
+      "confidence_curve": [
+        {
+          "conf": 0.05,
+          "tp": 460,
+          "fp": 973,
+          "fn": 123,
+          "precision": 0.32100488485694345,
+          "recall": 0.7890222984562607,
+          "f1": 0.4563492063492062
+        },
+        {
+          "conf": 0.1,
+          "tp": 437,
+          "fp": 563,
+          "fn": 146,
+          "precision": 0.437,
+          "recall": 0.7495711835334476,
+          "f1": 0.5521162349968415
+        },
+        {
+          "conf": 0.15,
+          "tp": 423,
+          "fp": 397,
+          "fn": 160,
+          "precision": 0.5158536585365854,
+          "recall": 0.725557461406518,
+          "f1": 0.6029935851746259
+        },
+        {
+          "conf": 0.2,
+          "tp": 410,
+          "fp": 294,
+          "fn": 173,
+          "precision": 0.5823863636363636,
+          "recall": 0.7032590051457976,
+          "f1": 0.6371406371406372
+        },
+        {
+          "conf": 0.25,
+          "tp": 392,
+          "fp": 227,
+          "fn": 191,
+          "precision": 0.6332794830371568,
+          "recall": 0.6723842195540308,
+          "f1": 0.6522462562396008
+        },
+        {
+          "conf": 0.3,
+          "tp": 375,
+          "fp": 162,
+          "fn": 208,
+          "precision": 0.6983240223463687,
+          "recall": 0.6432246998284734,
+          "f1": 0.6696428571428571
+        },
+        {
+          "conf": 0.35,
+          "tp": 353,
+          "fp": 129,
+          "fn": 230,
+          "precision": 0.7323651452282157,
+          "recall": 0.6054888507718696,
+          "f1": 0.6629107981220657
+        },
+        {
+          "conf": 0.4,
+          "tp": 328,
+          "fp": 108,
+          "fn": 255,
+          "precision": 0.7522935779816514,
+          "recall": 0.5626072041166381,
+          "f1": 0.6437684003925418
+        },
+        {
+          "conf": 0.45,
+          "tp": 296,
+          "fp": 74,
+          "fn": 287,
+          "precision": 0.8,
+          "recall": 0.5077186963979416,
+          "f1": 0.621196222455404
+        },
+        {
+          "conf": 0.5,
+          "tp": 274,
+          "fp": 53,
+          "fn": 309,
+          "precision": 0.8379204892966361,
+          "recall": 0.4699828473413379,
+          "f1": 0.6021978021978022
+        },
+        {
+          "conf": 0.6,
+          "tp": 223,
+          "fp": 26,
+          "fn": 360,
+          "precision": 0.8955823293172691,
+          "recall": 0.38250428816466553,
+          "f1": 0.5360576923076924
+        },
+        {
+          "conf": 0.7,
+          "tp": 154,
+          "fp": 7,
+          "fn": 429,
+          "precision": 0.9565217391304348,
+          "recall": 0.2641509433962264,
+          "f1": 0.4139784946236559
+        },
+        {
+          "conf": 0.8,
+          "tp": 60,
+          "fp": 2,
+          "fn": 523,
+          "precision": 0.967741935483871,
+          "recall": 0.10291595197255575,
+          "f1": 0.18604651162790697
+        }
+      ],
+      "latency": {
+        "device": "0",
+        "device_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+        "torch": "2.6.0+cu124",
+        "imgsz": 640,
+        "conf": 0.25,
+        "batch": 1,
+        "precision": "FP32",
+        "rect": false,
+        "warmup": 3,
+        "repeats": 3,
+        "samples": 60,
+        "images": [
+          "images/val/image_00000096.jpg",
+          "images/val/image_00000130.jpg",
+          "images/val/image_00000389.jpg",
+          "images/val/image_00000398.jpg",
+          "images/val/image_00000406.jpg",
+          "images/val/image_00000414.jpg",
+          "images/val/image_00000423.jpg",
+          "images/val/image_00000431.jpg",
+          "images/val/image_00000439.jpg",
+          "images/val/image_00000448.jpg",
+          "images/val/image_00000456.jpg",
+          "images/val/image_00000465.jpg",
+          "images/val/image_00000473.jpg",
+          "images/val/image_00000481.jpg",
+          "images/val/image_00000490.jpg",
+          "images/val/image_00000681.jpg",
+          "images/val/image_00000689.jpg",
+          "images/val/image_00000698.jpg",
+          "images/val/image_00000706.jpg",
+          "images/val/image_00000715.jpg"
+        ],
+        "source_sizes": [
+          [
+            3668,
+            1628
+          ],
+          [
+            1280,
+            960
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ]
+        ],
+        "mean_ms": 107.75278499980534,
+        "median_ms": 101.73895000480115,
+        "p95_ms": 135.4965299833566,
+        "measurements_ms": [
+          124.80109999887645,
+          77.44160000584088,
+          149.97179998317733,
+          162.554899987299,
+          126.48740000440739,
+          136.863199993968,
+          120.023499999661,
+          129.58419998176396,
+          99.29860002011992,
+          103.72899999492802,
+          112.9685000050813,
+          97.81109998584725,
+          95.97870000288822,
+          98.74250000575557,
+          96.1667999799829,
+          104.98720000032336,
+          108.1506000191439,
+          102.43309999350458,
+          97.07789999083616,
+          101.90850001526996,
+          131.25780000700615,
+          79.5421999937389,
+          122.21810000482947,
+          134.7185000195168,
+          131.68329998734407,
+          126.81260000681505,
+          126.42829999094829,
+          126.40730000566691,
+          106.28869998618029,
+          100.96590002649464,
+          101.56939999433234,
+          97.75230000377633,
+          97.26879998925142,
+          102.21690000616945,
+          101.398099999642,
+          97.28210000321269,
+          98.38750000926666,
+          101.33909998694435,
+          135.4245999827981,
+          130.71800000034273,
+          99.27380000590347,
+          47.0389999973122,
+          124.22430000151508,
+          119.91130001842976,
+          123.01219999790192,
+          114.38800001633354,
+          113.29269999987446,
+          129.18119999812916,
+          91.38480000547133,
+          91.5992000082042,
+          90.09709997917525,
+          91.17459997651167,
+          94.4761999999173,
+          92.47120001236908,
+          86.73750000889413,
+          96.4181000017561,
+          88.32100001745857,
+          92.65119998599403,
+          89.72459999495186,
+          93.12939998926595
+        ],
+        "scope": "RGB image copy + preprocessing + inference + NMS + CPU boxes; synchronized; excludes file decode, model load, drawing and disk writes"
+      },
+      "examples": {
+        "tp": [
+          {
+            "image": "images/val/image_00000096.jpg",
+            "file": "examples/image_00000096.jpg"
+          },
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          },
+          {
+            "image": "images/val/image_00000115.jpg",
+            "file": "examples/image_00000115.jpg"
+          }
+        ],
+        "fp": [
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          },
+          {
+            "image": "images/val/image_00000115.jpg",
+            "file": "examples/image_00000115.jpg"
+          },
+          {
+            "image": "images/val/image_00000126.jpg",
+            "file": "examples/image_00000126.jpg"
+          }
+        ],
+        "fn": [
+          {
+            "image": "images/val/image_00000096.jpg",
+            "file": "examples/image_00000096.jpg"
+          },
+          {
+            "image": "images/val/image_00000098.jpg",
+            "file": "examples/image_00000098.jpg"
+          },
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          }
+        ]
+      },
+      "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."
+    },
+    {
+      "name": "a_n_aug_20",
+      "weights": "models/a/a_n_aug_20/best.pt",
+      "weights_sha256": "4944f56bb2cfb38b0f51200cde97988afb18e4f5daaaaa3276cf6feaba3f5faf",
+      "split": "val",
+      "images": 160,
+      "objects": 583,
+      "metrics": {
+        "precision": 0.6999824148525841,
+        "recall": 0.5922896165920454,
+        "mAP50": 0.6350659459580251,
+        "mAP50_95": 0.2808630497823708
+      },
+      "operating_point": {
+        "conf": 0.3,
+        "tp": 345,
+        "fp": 129,
+        "fn": 238,
+        "precision": 0.7278481012658228,
+        "recall": 0.5917667238421955,
+        "f1": 0.6527909176915799
+      },
+      "confidence_curve": [
+        {
+          "conf": 0.05,
+          "tp": 445,
+          "fp": 955,
+          "fn": 138,
+          "precision": 0.31785714285714284,
+          "recall": 0.7632933104631218,
+          "f1": 0.44881492687846697
+        },
+        {
+          "conf": 0.1,
+          "tp": 420,
+          "fp": 515,
+          "fn": 163,
+          "precision": 0.44919786096256686,
+          "recall": 0.7204116638078902,
+          "f1": 0.5533596837944664
+        },
+        {
+          "conf": 0.15,
+          "tp": 403,
+          "fp": 330,
+          "fn": 180,
+          "precision": 0.5497953615279673,
+          "recall": 0.6912521440823327,
+          "f1": 0.6124620060790275
+        },
+        {
+          "conf": 0.2,
+          "tp": 382,
+          "fp": 247,
+          "fn": 201,
+          "precision": 0.6073131955484896,
+          "recall": 0.6552315608919382,
+          "f1": 0.6303630363036303
+        },
+        {
+          "conf": 0.25,
+          "tp": 360,
+          "fp": 184,
+          "fn": 223,
+          "precision": 0.6617647058823529,
+          "recall": 0.6174957118353345,
+          "f1": 0.6388642413487133
+        },
+        {
+          "conf": 0.3,
+          "tp": 345,
+          "fp": 129,
+          "fn": 238,
+          "precision": 0.7278481012658228,
+          "recall": 0.5917667238421955,
+          "f1": 0.6527909176915799
+        },
+        {
+          "conf": 0.35,
+          "tp": 314,
+          "fp": 91,
+          "fn": 269,
+          "precision": 0.7753086419753087,
+          "recall": 0.5385934819897084,
+          "f1": 0.6356275303643725
+        },
+        {
+          "conf": 0.4,
+          "tp": 284,
+          "fp": 66,
+          "fn": 299,
+          "precision": 0.8114285714285714,
+          "recall": 0.48713550600343053,
+          "f1": 0.6087888531618434
+        },
+        {
+          "conf": 0.45,
+          "tp": 254,
+          "fp": 51,
+          "fn": 329,
+          "precision": 0.8327868852459016,
+          "recall": 0.43567753001715265,
+          "f1": 0.572072072072072
+        },
+        {
+          "conf": 0.5,
+          "tp": 223,
+          "fp": 40,
+          "fn": 360,
+          "precision": 0.8479087452471483,
+          "recall": 0.38250428816466553,
+          "f1": 0.5271867612293145
+        },
+        {
+          "conf": 0.6,
+          "tp": 134,
+          "fp": 16,
+          "fn": 449,
+          "precision": 0.8933333333333333,
+          "recall": 0.22984562607204118,
+          "f1": 0.36562073669849937
+        },
+        {
+          "conf": 0.7,
+          "tp": 46,
+          "fp": 1,
+          "fn": 537,
+          "precision": 0.9787234042553191,
+          "recall": 0.07890222984562607,
+          "f1": 0.14603174603174604
+        },
+        {
+          "conf": 0.8,
+          "tp": 2,
+          "fp": 0,
+          "fn": 581,
+          "precision": 1.0,
+          "recall": 0.003430531732418525,
+          "f1": 0.006837606837606837
+        }
+      ],
+      "latency": {
+        "device": "0",
+        "device_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+        "torch": "2.6.0+cu124",
+        "imgsz": 640,
+        "conf": 0.25,
+        "batch": 1,
+        "precision": "FP32",
+        "rect": false,
+        "warmup": 3,
+        "repeats": 3,
+        "samples": 60,
+        "images": [
+          "images/val/image_00000096.jpg",
+          "images/val/image_00000130.jpg",
+          "images/val/image_00000389.jpg",
+          "images/val/image_00000398.jpg",
+          "images/val/image_00000406.jpg",
+          "images/val/image_00000414.jpg",
+          "images/val/image_00000423.jpg",
+          "images/val/image_00000431.jpg",
+          "images/val/image_00000439.jpg",
+          "images/val/image_00000448.jpg",
+          "images/val/image_00000456.jpg",
+          "images/val/image_00000465.jpg",
+          "images/val/image_00000473.jpg",
+          "images/val/image_00000481.jpg",
+          "images/val/image_00000490.jpg",
+          "images/val/image_00000681.jpg",
+          "images/val/image_00000689.jpg",
+          "images/val/image_00000698.jpg",
+          "images/val/image_00000706.jpg",
+          "images/val/image_00000715.jpg"
+        ],
+        "source_sizes": [
+          [
+            3668,
+            1628
+          ],
+          [
+            1280,
+            960
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ]
+        ],
+        "mean_ms": 103.70516499873095,
+        "median_ms": 96.3400000036927,
+        "p95_ms": 148.99847001797752,
+        "measurements_ms": [
+          144.37850000103936,
+          79.15800000773743,
+          147.63339998899028,
+          150.3750000265427,
+          119.34399997699074,
+          116.93340001511388,
+          122.4279000016395,
+          124.22779999906197,
+          102.88029999355786,
+          92.55799997481517,
+          94.14520001155324,
+          92.59429998928681,
+          88.89660000568256,
+          91.33379999548197,
+          97.26229999796487,
+          93.37879999657162,
+          92.78420000919141,
+          93.66750001208857,
+          97.14059997349977,
+          96.17459998116829,
+          90.17360000871122,
+          45.792799995979294,
+          115.91300001600757,
+          111.64119999739341,
+          121.05600000359118,
+          118.96299998625182,
+          120.63589997706003,
+          115.09039998054504,
+          106.35929999989457,
+          92.10090001579374,
+          91.63389998138882,
+          91.16670000366867,
+          95.48819999326952,
+          88.4784999943804,
+          89.73060001153499,
+          90.00540000852197,
+          90.92630000668578,
+          98.65729999728501,
+          93.86250001261942,
+          88.21349998470396,
+          92.78740000445396,
+          44.585299998288974,
+          115.14359997818246,
+          117.67870001494884,
+          149.22399999340996,
+          148.98660001927055,
+          149.8907000059262,
+          130.02620000042953,
+          102.94680000515655,
+          96.42019998864271,
+          96.65969997877255,
+          94.59740002057515,
+          92.66359999310225,
+          98.19369998876937,
+          95.58490000199527,
+          92.20069998991676,
+          96.25980001874268,
+          93.48270000191405,
+          108.34449998219498,
+          113.45020000590011
+        ],
+        "scope": "RGB image copy + preprocessing + inference + NMS + CPU boxes; synchronized; excludes file decode, model load, drawing and disk writes"
+      },
+      "examples": {
+        "tp": [
+          {
+            "image": "images/val/image_00000096.jpg",
+            "file": "examples/image_00000096.jpg"
+          },
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          },
+          {
+            "image": "images/val/image_00000126.jpg",
+            "file": "examples/image_00000126.jpg"
+          }
+        ],
+        "fp": [
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          },
+          {
+            "image": "images/val/image_00000115.jpg",
+            "file": "examples/image_00000115.jpg"
+          },
+          {
+            "image": "images/val/image_00000126.jpg",
+            "file": "examples/image_00000126.jpg"
+          }
+        ],
+        "fn": [
+          {
+            "image": "images/val/image_00000096.jpg",
+            "file": "examples/image_00000096.jpg"
+          },
+          {
+            "image": "images/val/image_00000098.jpg",
+            "file": "examples/image_00000098.jpg"
+          },
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          }
+        ]
+      },
+      "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."
+    },
+    {
+      "name": "b_s_baseline_20",
+      "weights": "models/b/b_s_baseline_20/best.pt",
+      "weights_sha256": "1f193df59d8893d004fa6d8999b5b00f737fbb4792fbd531ffaa58e6fc3c28c2",
+      "split": "val",
+      "images": 160,
+      "objects": 583,
+      "metrics": {
+        "precision": 0.7832691849558399,
+        "recall": 0.6535162950257289,
+        "mAP50": 0.7226321366400067,
+        "mAP50_95": 0.39129872429079887
+      },
+      "operating_point": {
+        "conf": 0.4,
+        "tp": 389,
+        "fp": 120,
+        "fn": 194,
+        "precision": 0.7642436149312377,
+        "recall": 0.6672384219554031,
+        "f1": 0.7124542124542125
+      },
+      "confidence_curve": [
+        {
+          "conf": 0.05,
+          "tp": 488,
+          "fp": 959,
+          "fn": 95,
+          "precision": 0.3372494816862474,
+          "recall": 0.8370497427101201,
+          "f1": 0.48078817733990153
+        },
+        {
+          "conf": 0.1,
+          "tp": 477,
+          "fp": 591,
+          "fn": 106,
+          "precision": 0.44662921348314605,
+          "recall": 0.8181818181818182,
+          "f1": 0.5778316172016958
+        },
+        {
+          "conf": 0.15,
+          "tp": 463,
+          "fp": 436,
+          "fn": 120,
+          "precision": 0.5150166852057843,
+          "recall": 0.7941680960548885,
+          "f1": 0.6248313090418354
+        },
+        {
+          "conf": 0.2,
+          "tp": 442,
+          "fp": 338,
+          "fn": 141,
+          "precision": 0.5666666666666667,
+          "recall": 0.758147512864494,
+          "f1": 0.6485693323550991
+        },
+        {
+          "conf": 0.25,
+          "tp": 429,
+          "fp": 264,
+          "fn": 154,
+          "precision": 0.6190476190476191,
+          "recall": 0.7358490566037735,
+          "f1": 0.6724137931034483
+        },
+        {
+          "conf": 0.3,
+          "tp": 419,
+          "fp": 204,
+          "fn": 164,
+          "precision": 0.6725521669341894,
+          "recall": 0.7186963979416809,
+          "f1": 0.6948590381426202
+        },
+        {
+          "conf": 0.35,
+          "tp": 406,
+          "fp": 158,
+          "fn": 177,
+          "precision": 0.7198581560283688,
+          "recall": 0.6963979416809606,
+          "f1": 0.7079337401918047
+        },
+        {
+          "conf": 0.4,
+          "tp": 389,
+          "fp": 120,
+          "fn": 194,
+          "precision": 0.7642436149312377,
+          "recall": 0.6672384219554031,
+          "f1": 0.7124542124542125
+        },
+        {
+          "conf": 0.45,
+          "tp": 373,
+          "fp": 97,
+          "fn": 210,
+          "precision": 0.7936170212765957,
+          "recall": 0.6397941680960549,
+          "f1": 0.7084520417853751
+        },
+        {
+          "conf": 0.5,
+          "tp": 356,
+          "fp": 72,
+          "fn": 227,
+          "precision": 0.8317757009345794,
+          "recall": 0.6106346483704974,
+          "f1": 0.7042532146389713
+        },
+        {
+          "conf": 0.6,
+          "tp": 313,
+          "fp": 40,
+          "fn": 270,
+          "precision": 0.886685552407932,
+          "recall": 0.5368782161234992,
+          "f1": 0.6688034188034189
+        },
+        {
+          "conf": 0.7,
+          "tp": 219,
+          "fp": 11,
+          "fn": 364,
+          "precision": 0.9521739130434783,
+          "recall": 0.37564322469982847,
+          "f1": 0.5387453874538746
+        },
+        {
+          "conf": 0.8,
+          "tp": 91,
+          "fp": 4,
+          "fn": 492,
+          "precision": 0.9578947368421052,
+          "recall": 0.15608919382504288,
+          "f1": 0.26843657817109146
+        }
+      ],
+      "latency": {
+        "device": "0",
+        "device_name": "NVIDIA GeForce RTX 3050 Laptop GPU",
+        "torch": "2.6.0+cu124",
+        "imgsz": 640,
+        "conf": 0.25,
+        "batch": 1,
+        "precision": "FP32",
+        "rect": false,
+        "warmup": 3,
+        "repeats": 3,
+        "samples": 60,
+        "images": [
+          "images/val/image_00000096.jpg",
+          "images/val/image_00000130.jpg",
+          "images/val/image_00000389.jpg",
+          "images/val/image_00000398.jpg",
+          "images/val/image_00000406.jpg",
+          "images/val/image_00000414.jpg",
+          "images/val/image_00000423.jpg",
+          "images/val/image_00000431.jpg",
+          "images/val/image_00000439.jpg",
+          "images/val/image_00000448.jpg",
+          "images/val/image_00000456.jpg",
+          "images/val/image_00000465.jpg",
+          "images/val/image_00000473.jpg",
+          "images/val/image_00000481.jpg",
+          "images/val/image_00000490.jpg",
+          "images/val/image_00000681.jpg",
+          "images/val/image_00000689.jpg",
+          "images/val/image_00000698.jpg",
+          "images/val/image_00000706.jpg",
+          "images/val/image_00000715.jpg"
+        ],
+        "source_sizes": [
+          [
+            3668,
+            1628
+          ],
+          [
+            1280,
+            960
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3840,
+            2160
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ],
+          [
+            3668,
+            1628
+          ]
+        ],
+        "mean_ms": 95.67607500163528,
+        "median_ms": 92.80275000492111,
+        "p95_ms": 132.09295998967713,
+        "measurements_ms": [
+          131.09489998896606,
+          83.31990000442602,
+          151.05610000318848,
+          152.8907000028994,
+          153.24949999921955,
+          113.29599999589846,
+          112.51989999436773,
+          110.47600000165403,
+          94.02460002456792,
+          82.78640001663007,
+          81.90280001144856,
+          84.58450000034645,
+          84.13430000655353,
+          77.53050001338124,
+          74.51299999956973,
+          76.53200000640936,
+          80.5075999815017,
+          83.26069999020547,
+          81.98060002177954,
+          75.89330000337213,
+          78.63620002171956,
+          33.06620000512339,
+          100.5437999847345,
+          101.32260000682436,
+          100.89450000668876,
+          113.71869998401962,
+          109.01909999665804,
+          109.10000000149012,
+          86.64270001463592,
+          86.2314999976661,
+          84.47659999364987,
+          85.31600001151673,
+          86.35219998541288,
+          89.035100012552,
+          84.2560000019148,
+          88.09900001506321,
+          92.36219999729656,
+          87.90680000674911,
+          88.39389999047853,
+          90.26900000753812,
+          87.36679999856278,
+          41.99340002378449,
+          112.52359999343753,
+          116.83020001510158,
+          113.65359998308122,
+          112.1121000032872,
+          118.4190999774728,
+          122.24690002040006,
+          93.5571999871172,
+          90.49570001661777,
+          92.37890000804327,
+          93.39039999758825,
+          93.22660000179894,
+          95.29129997827113,
+          93.53490002104081,
+          95.52979998989031,
+          93.96399999968708,
+          98.8939999951981,
+          95.77279997756705,
+          98.18780000205152
+        ],
+        "scope": "RGB image copy + preprocessing + inference + NMS + CPU boxes; synchronized; excludes file decode, model load, drawing and disk writes"
+      },
+      "examples": {
+        "tp": [
+          {
+            "image": "images/val/image_00000096.jpg",
+            "file": "examples/image_00000096.jpg"
+          },
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          },
+          {
+            "image": "images/val/image_00000126.jpg",
+            "file": "examples/image_00000126.jpg"
+          }
+        ],
+        "fp": [
+          {
+            "image": "images/val/image_00000096.jpg",
+            "file": "examples/image_00000096.jpg"
+          },
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          },
+          {
+            "image": "images/val/image_00000115.jpg",
+            "file": "examples/image_00000115.jpg"
+          }
+        ],
+        "fn": [
+          {
+            "image": "images/val/image_00000096.jpg",
+            "file": "examples/image_00000096.jpg"
+          },
+          {
+            "image": "images/val/image_00000098.jpg",
+            "file": "examples/image_00000098.jpg"
+          },
+          {
+            "image": "images/val/image_00000107.jpg",
+            "file": "examples/image_00000107.jpg"
+          }
+        ]
+      },
+      "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."
+    }
+  ],
+  "selection": {
+    "schema_version": 1,
+    "selected_on": "val",
+    "criterion": "max mAP50_95; tie: model name",
+    "name": "b_s_baseline_20",
+    "weights": "models/b/b_s_baseline_20/best.pt",
+    "weights_sha256": "1f193df59d8893d004fa6d8999b5b00f737fbb4792fbd531ffaa58e6fc3c28c2",
+    "conf": 0.4,
+    "dataset_identity": "8956a20832a85f145ec0f1c13bb5070273b674c52b12eefcd16c56b61d4795dc",
+    "settings": {
+      "data": "data/processed/uavvaste/data.yaml",
+      "reference": "reports/a/dataset",
+      "device": "0",
+      "imgsz": 640,
+      "nms_iou": 0.7,
+      "match_iou": 0.5,
+      "max_det": 300,
+      "confidence_grid": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.6,
+        0.7,
+        0.8
+      ],
+      "benchmark_images": 20,
+      "benchmark_conf": 0.25,
+      "benchmark_repeats": 3,
+      "warmup": 3,
+      "examples_per_kind": 3
+    }
+  }
+}

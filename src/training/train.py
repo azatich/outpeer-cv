@@ -186,7 +186,7 @@ def prepare_run(config_path: str | Path, overrides: dict | None = None,
     with config_path.open(encoding="utf-8-sig") as handle:
         config = deepcopy(_mapping(yaml.safe_load(handle), "config"))
     overrides = {key: value for key, value in (overrides or {}).items() if value is not None}
-    if set(overrides) - {"data", "name", "device", "epochs", "batch", "imgsz", "fraction"}:
+    if set(overrides) - {"data", "name", "device", "epochs", "batch", "imgsz", "fraction", "participant"}:
         raise ConfigurationError("Unsupported command-line override")
     for key in ("data", "name"):
         if key in overrides:
@@ -204,8 +204,11 @@ def prepare_run(config_path: str | Path, overrides: dict | None = None,
     model_path = (workspace / "models" / "pretrained" / model).resolve() if re.fullmatch(r"yolov8[nslmx]\.pt", model) else _absolute(model, workspace)
     if not model_path.is_file() and not re.fullmatch(r"yolov8[nslmx]\.pt", model):
         raise ConfigurationError(f"Custom pretrained weights do not exist: {model_path}")
-    run_dir = workspace / "runs" / "a" / config["name"]
-    handoff_dir = workspace / "models" / "a" / config["name"]
+    participant = overrides.get("participant", "a")
+    if participant not in {"a", "b"}:
+        raise ConfigurationError("participant must be a or b")
+    run_dir = workspace / "runs" / participant / config["name"]
+    handoff_dir = workspace / "models" / participant / config["name"]
     for path in (run_dir, handoff_dir):
         if path.exists():
             raise ConfigurationError(f"Output already exists: {path}. Choose a new --name.")
@@ -363,6 +366,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--config", required=True, help="YAML configuration relative to repository root")
     parser.add_argument("--data", help="Prepared data.yaml (requires sibling dataset_manifest.json)")
     parser.add_argument("--device", help="auto (default), cpu, mps, or GPU index such as 0")
+    parser.add_argument("--participant", choices=("a", "b"), default="a", help="Owner of runs/ and models/ output directories")
     parser.add_argument("--name", help="Unique run name; existing results are never overwritten")
     parser.add_argument("--epochs", type=int)
     parser.add_argument("--batch", type=int)
