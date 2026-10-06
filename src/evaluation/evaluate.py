@@ -134,6 +134,8 @@ def evaluate_model(model_spec: dict, dataset: PreparedDataset, samples: list[Sam
     if split == "test" and fixed_conf is None:
         raise ValueError("Test requires a previously frozen confidence")
     detector = Detector(model_spec["weights"], str(config["device"]))
+    if detector.names != dataset.names:
+        raise ValueError("Checkpoint classes do not match the dataset classes")
     output.mkdir(parents=True, exist_ok=False)
     data_yaml = output / "dataset.resolved.yaml"
     data_yaml.write_text(yaml.safe_dump(dataset.resolved_yaml(split), sort_keys=False), encoding="utf-8")
@@ -145,6 +147,14 @@ def evaluate_model(model_spec: dict, dataset: PreparedDataset, samples: list[Sam
                                 project=str(output), name="ultralytics", exist_ok=False, verbose=False)
     metrics = {"precision": float(result.box.mp), "recall": float(result.box.mr),
                "mAP50": float(result.box.map50), "mAP50_95": float(result.box.map)}
+    class_metrics = {}
+    for index, class_id in enumerate(result.box.ap_class_index):
+        class_id = int(class_id)
+        class_metrics[detector.names[class_id]] = {
+            "class_id": class_id, "precision": float(result.box.p[index]),
+            "recall": float(result.box.r[index]), "mAP50": float(result.box.ap50[index]),
+            "mAP50_95": float(result.box.ap[index]),
+        }
     floor = min(config["confidence_grid"]) if fixed_conf is None else fixed_conf
     predictions = []
     for index, sample in enumerate(samples, 1):
@@ -159,12 +169,19 @@ def evaluate_model(model_spec: dict, dataset: PreparedDataset, samples: list[Sam
     else:
         operating = score_threshold(predictions, truths, fixed_conf, config["match_iou"])
         curve = []
+    class_operating = {}
+    for class_id, name in detector.names.items():
+        class_operating[name] = score_threshold(
+            [[d for d in detections if d.class_id == class_id] for detections in predictions],
+            [[t for t in boxes if t.class_id == class_id] for boxes in truths],
+            operating["conf"], config["match_iou"])
     latency = benchmark(detector, samples, config, config["benchmark_conf"])
     examples = error_examples(samples, predictions, operating["conf"], config["match_iou"], output / "examples", config["examples_per_kind"])
     summary = {"name": model_spec["name"], "weights": relative_path(detector.weights),
                "weights_sha256": sha256(detector.weights), "split": split,
                "images": len(samples), "objects": sum(len(s.truth) for s in samples),
-               "metrics": metrics, "operating_point": operating, "confidence_curve": curve,
+               "metrics": metrics, "class_metrics": class_metrics,
+               "operating_point": operating, "class_operating_points": class_operating, "confidence_curve": curve,
                "latency": latency, "examples": examples,
                "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."}
     write_json(output / "summary.json", summary)
@@ -189,6 +206,15 @@ def write_report(output: Path, report: dict) -> None:
     for row in rows:
         op = row["operating_point"]
         lines.append(f"| {row['name']} | {op['tp']} | {op['fp']} | {op['fn']} | {op['precision']:.4f} | {op['recall']:.4f} |")
+    for row in rows:
+        if len(row.get("class_metrics", {})) <= 1:
+            continue
+        lines += ["", f"## Метрики по классам: {row['name']}", "",
+                  "| Класс | Precision¹ | Recall¹ | mAP50 | mAP50–95 | Рабочий F1 | TP | FP | FN |",
+                  "|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+        for name, metrics in row["class_metrics"].items():
+            op = row["class_operating_points"][name]
+            lines.append(f"| {name} | {metrics['precision']:.4f} | {metrics['recall']:.4f} | {metrics['mAP50']:.4f} | {metrics['mAP50_95']:.4f} | {op['f1']:.4f} | {op['tp']} | {op['fp']} | {op['fn']} |")
     lines += ["", "## Примеры ошибок", "", "Зелёный — TP, красный — FP, жёлтый — FN (рамка разметки). Один кадр может содержать несколько видов ошибок."]
     for row in rows:
         lines += ["", f"### {row['name']}"]
@@ -197,7 +223,8 @@ def write_report(output: Path, report: dict) -> None:
                 lines.append(f"\n{kind.upper()}: таких случаев при выбранных настройках нет.")
             for example in examples:
                 lines.append(f"\n![{kind.upper()}: {example['image']}]({row['name']}/{example['file']})")
-    lines += ["", "## Ограничения", "", "Серии определены по именам файлов; независимость полётов/локаций не подтверждена. Один seed. Нет отдельных чистых сцен. Результаты не подтверждают качество на море, побережье или спутниковых снимках."]
+    lines += ["", "## Ограничения", "", "Один seed. Независимость локаций не подтверждена. Качество на море, побережье или спутниковых снимках отдельно не проверено."]
+    lines += [f"- {limitation}" for limitation in report.get("dataset_limitations", [])]
     if report["split"] == "val":
         lines += ["", f"Выбрана **{report['selection']['name']}** по максимальному validation mAP50–95. Настройки зафиксированы в `selection.json`. Test в этом запуске не использовался."]
     else:
@@ -229,7 +256,8 @@ def run_validation(config: dict, output: Path) -> dict:
                      "conf": best["operating_point"]["conf"], "dataset_identity": dataset.identity, "settings": settings}
         report = {"schema_version": 1, "split": "val", "test_evaluated": False,
                   "created_at": datetime.now(timezone.utc).isoformat(), "dataset_identity": dataset.identity,
-                  "settings": settings, "environment": environment_snapshot(ROOT), "models": rows, "selection": selection}
+                  "settings": settings, "dataset_limitations": dataset.manifest.get("limitations", []),
+                  "environment": environment_snapshot(ROOT), "models": rows, "selection": selection}
         write_json(output / "comparison.json", report)
         selection_file = {**selection, "validation_report": relative_path(output / "comparison.json"),
                           "validation_report_sha256": sha256(output / "comparison.json")}

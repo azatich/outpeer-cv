@@ -88,6 +88,37 @@ def test_dataset_rejects_changed_split_pixels_and_missing_labels(dataset_fixture
         PreparedDataset(root / "data.yaml", reference)
 
 
+def test_prepared_type_dataset_preserves_class_ids_and_names(dataset_fixture):
+    root, reference = dataset_fixture
+    names = {0: "bottle", 1: "bag", 2: "can"}
+    for directory in (root, reference):
+        manifest = json.loads((directory / "dataset_manifest.json").read_text())
+        manifest["categories"] = [{"id": class_id, "name": name} for class_id, name in names.items()]
+        write_json(directory / "dataset_manifest.json", manifest)
+    config = yaml.safe_load((root / "data.yaml").read_text())
+    config["names"] = names
+    (root / "data.yaml").write_text(yaml.safe_dump(config))
+    (root / "labels/val/image_1.txt").write_text("1 0.5 0.5 0.5 0.5\n")
+    (root / "labels/test/image_2.txt").write_text("2 0.5 0.5 0.5 0.5\n")
+    dataset = PreparedDataset(root / "data.yaml", reference)
+    assert dataset.resolved_yaml("val")["names"] == names
+    assert dataset.load_split("val")[0].truth[0].class_id == 1
+    assert dataset.load_split("test")[0].truth[0].class_id == 2
+
+
+def test_evaluation_rejects_a_model_with_different_class_meanings(dataset_fixture, tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    from src.evaluation import evaluate
+    root, reference = dataset_fixture
+    dataset = PreparedDataset(root / "data.yaml", reference)
+    monkeypatch.setattr(evaluate, "Detector", lambda *args: SimpleNamespace(names={0: "bottle", 1: "bag", 2: "can"}))
+    output = tmp_path / "wrong_model"
+    with pytest.raises(ValueError, match="classes do not match"):
+        evaluate.evaluate_model({"weights": "fixture.pt"}, dataset, dataset.load_split("val"),
+                                {"device": "cpu"}, output, split="val")
+    assert not output.exists()
+
+
 @pytest.mark.parametrize("label", ["0 nan 0.5 0.1 0.1", "1 0.5 0.5 0.1 0.1", "0 0.9 0.5 0.8 0.8", "0 0.5 0.5 -1 0.5"])
 def test_invalid_ground_truth_is_never_silently_ignored(tmp_path, label):
     path = tmp_path / "label.txt"; path.write_text(label)
@@ -139,7 +170,9 @@ def test_test_evaluation_requires_fixed_threshold_and_never_searches(dataset_fix
     class FakeDetector:
         def __init__(self, path, device):
             self.weights = Path(path); self.device = device
-            self.model = SimpleNamespace(val=lambda **kw: SimpleNamespace(box=SimpleNamespace(mp=1, mr=1, map50=1, map=1)))
+            self.names = {0: "rubbish"}
+            self.model = SimpleNamespace(val=lambda **kw: SimpleNamespace(box=SimpleNamespace(
+                mp=1, mr=1, map50=1, map=1, ap_class_index=[0], p=[1], r=[1], ap50=[1], ap=[1])))
         def predict(self, image, **kwargs):
             calls.append(kwargs["conf"])
             return SimpleNamespace(detections=[detection((5, 2.5, 15, 7.5))])

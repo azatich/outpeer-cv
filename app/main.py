@@ -14,7 +14,7 @@ if str(ROOT) not in sys.path:
 import streamlit as st
 
 from src.evaluation.evaluate import load_selection
-from src.inference.predict import DEFAULT_WEIGHTS, Detector, load_image, local_path
+from src.inference.predict import CLASS_LABELS, DEFAULT_WEIGHTS, TYPE_WEIGHTS, Detector, load_image, local_path
 
 
 @st.cache_resource(show_spinner=False, max_entries=3)
@@ -24,7 +24,10 @@ def get_detector(weights: str, device: str, modified_ns: int, size: int) -> Dete
 
 def available_models() -> dict[str, Path]:
     models = {}
-    candidates = [("YOLOv8n · базовая", DEFAULT_WEIGHTS),
+    candidates = [("Типы мусора · осторожное дообучение", ROOT / "models/b/taco_n_types_finetune_careful_30/best.pt"),
+                  ("Типы мусора · дообученная", ROOT / "models/b/taco_n_types_finetune_50/best.pt"),
+                  ("Типы мусора · бутылка / пакет / банка", TYPE_WEIGHTS),
+                  ("YOLOv8n · базовая", DEFAULT_WEIGHTS),
                   ("YOLOv8n · аугментации", ROOT / "models/a/a_n_aug_20/best.pt"),
                   ("YOLOv8s · базовая", ROOT / "models/b/b_s_baseline_20/best.pt")]
     for name, path in candidates:
@@ -39,11 +42,15 @@ def render_result(prediction) -> None:
     count.metric("Обнаружений на кадре", len(prediction.detections))
     confidence.metric("Порог уверенности", f"{prediction.settings['conf']:.0%}")
     timing.metric("Обработка моделью", f"{prediction.elapsed_ms:.0f} мс")
-    st.image(annotated, caption="Рамки обозначают обнаруженные объекты класса rubbish", width="stretch")
+    by_class = prediction.to_dict()["counts_by_class"]
+    if len(prediction.settings.get("classes", {})) > 1:
+        for column, (name, total) in zip(st.columns(len(by_class)), by_class.items()):
+            column.metric(CLASS_LABELS.get(name, name), total)
+    st.image(annotated, caption="Рамки показывают тип предмета и уверенность модели", width="stretch")
     if not prediction.detections:
-        st.info("При выбранном пороге мусор не обнаружен. Это не гарантирует, что его нет на фотографии.")
+        st.info("При выбранном пороге объекты выбранных классов не обнаружены. Это не гарантирует, что мусора нет на фотографии.")
     else:
-        st.dataframe([{"Класс": d.class_name, "Уверенность": round(d.confidence, 4),
+        st.dataframe([{"Класс": CLASS_LABELS.get(d.class_name, d.class_name), "Уверенность": round(d.confidence, 4),
                        "x1": round(d.xyxy[0], 1), "y1": round(d.xyxy[1], 1),
                        "x2": round(d.xyxy[2], 1), "y2": round(d.xyxy[3], 1)} for d in prediction.detections],
                      hide_index=True, width="stretch")
@@ -65,29 +72,50 @@ def main() -> None:
     st.title("Поиск мусора на фотографии")
     st.write("Загрузите снимок, запустите анализ и посмотрите найденные объекты.")
     models = available_models()
-    if not models:
-        st.warning("Веса модели пока не установлены. Поместите best.pt в models/a/a_n_baseline_20/ из архива participant_a_handoff.zip. Инструкция: reports/b/README.md.")
-        st.stop()
-    selected = None
-    selection_file = ROOT / "reports/b/validation/selection.json"
-    if selection_file.is_file():
+    selections = {}
+    # Read frozen selections before stopping: a trained run can have a custom name.
+    selection_files = [ROOT / "reports/b/validation/selection.json"]
+    selection_files += sorted((ROOT / "reports/multiclass").rglob("selection.json"))
+    recommendation = ROOT / "reports/multiclass/recommended.json"
+    if recommendation.is_file():
         try:
-            selected = load_selection(selection_file)
-            selected_path = local_path(selected["weights"])
+            preferred = local_path(json.loads(recommendation.read_text(encoding="utf-8"))["selection"])
+            if preferred in selection_files:
+                # The last processed valid selection is moved to the first UI option.
+                selection_files.remove(preferred)
+                selection_files.append(preferred)
+        except (ValueError, OSError, KeyError, json.JSONDecodeError):
+            st.warning("Сохранённый выбор модели недоступен. Выберите модель в настройках.")
+    for selection_file in selection_files:
+        if not selection_file.is_file():
+            continue
+        try:
+            decision = load_selection(selection_file)
+            selected_path = local_path(decision["weights"])
+            selections[str(selected_path)] = decision
             if selected_path not in [p.resolve() for p in models.values()]:
-                models = {selected["name"]: selected_path, **models}
+                models = {decision["name"]: selected_path, **models}
             for label, path in list(models.items()):
                 if path.resolve() == selected_path:
-                    models = {f"{label} · выбрана на validation": path, **{k: v for k, v in models.items() if k != label}}
+                    selected_label = label if label.endswith(" · выбрана на validation") else f"{label} · выбрана на validation"
+                    models = {selected_label: path, **{k: v for k, v in models.items() if k != label}}
                     break
+        except FileNotFoundError:
+            # A report can refer to a checkpoint that was not transferred.
+            # It does not affect the available, installed models.
+            continue
         except (ValueError, OSError, KeyError, json.JSONDecodeError):
-            st.warning("Не удалось проверить сохранённый выбор модели. Используются ручные настройки.")
-            selected = None
+            if models:
+                st.warning("Для одной из моделей сохранённые настройки недоступны. Для неё используются ручные настройки.")
+    if not models:
+        st.warning("Веса модели пока не установлены. Нужен обученный best.pt: инструкция reports/b/README.md или reports/multiclass/README.md.")
+        st.stop()
     with st.sidebar:
         st.header("Настройки анализа")
         name = st.selectbox("Модель", list(models))
         weights = models[name]
-        matches_selection = selected is not None and weights.resolve() == local_path(selected["weights"])
+        selected = selections.get(str(weights.resolve()))
+        matches_selection = selected is not None
         initial_conf = float(selected["conf"]) if matches_selection else 0.25
         conf = st.slider("Порог уверенности", 0.01, 1.0, initial_conf, 0.01, key=f"confidence_{name}")
         device = st.selectbox("Устройство", ["auto", "cpu", "0"], format_func=lambda x: {"auto": "Автоматически", "cpu": "Процессор", "0": "Видеокарта NVIDIA"}[x])
@@ -125,7 +153,7 @@ def main() -> None:
         if "prediction" in st.session_state:
             render_result(st.session_state.prediction)
     st.divider()
-    st.caption("Учебная модель UAVVaste распознаёт один класс: rubbish (мусор). Счётчик показывает обнаружения на одном кадре. Качество на морских, прибрежных и спутниковых снимках отдельно не проверено.")
+    st.caption("UAVVaste: общий класс rubbish. TACO: bottle (бутылка), bag (пакет), can (банка); остальные типы мусора эта модель не определяет. Счётчик относится к одному кадру. Качество на морских и спутниковых снимках отдельно не проверено.")
 
 
 if __name__ == "__main__":

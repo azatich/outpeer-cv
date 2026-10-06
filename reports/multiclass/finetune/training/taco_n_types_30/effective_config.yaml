@@ -1,0 +1,78 @@
+name: taco_n_types_30
+model: yolov8n.pt
+data: data/processed/taco_types/data.yaml
+seed: 42
+train:
+  epochs: 30
+  imgsz: 640
+  batch: 4
+  workers: 0
+  patience: 15
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  cos_lr: true
+  close_mosaic: 5
+  fraction: 1.0
+  cache: false
+  amp: false
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0
+model_resolved: C:\Users\azatm2\projects\outpeer-cv\models\pretrained\yolov8n.pt
+train_arguments:
+  epochs: 30
+  imgsz: 640
+  batch: 4
+  workers: 0
+  patience: 15
+  optimizer: AdamW
+  lr0: 0.001
+  lrf: 0.01
+  weight_decay: 0.0005
+  warmup_epochs: 3.0
+  cos_lr: true
+  close_mosaic: 5
+  fraction: 1.0
+  cache: false
+  amp: false
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 1.0
+  mixup: 0.0
+  data: C:\Users\azatm2\projects\outpeer-cv\runs\b\taco_n_types_30\dataset.resolved.yaml
+  project: C:\Users\azatm2\projects\outpeer-cv\runs\b
+  name: taco_n_types_30
+  exist_ok: true
+  seed: 42
+  deterministic: true
+  device: '0'
+  pretrained: true
+  val: true
+  split: val
+  save: true
+  plots: true
+  resume: false
+runtime:
+  amp: false
+  device: '0'

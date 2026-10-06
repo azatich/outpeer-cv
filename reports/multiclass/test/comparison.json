@@ -1,0 +1,283 @@
+{
+  "schema_version": 1,
+  "split": "test",
+  "test_evaluated": true,
+  "created_at": "2026-10-05T17:56:37.199511+00:00",
+  "settings": {
+    "data": "data/processed/taco_types/data.yaml",
+    "reference": "reports/multiclass/dataset",
+    "device": "0",
+    "imgsz": 640,
+    "nms_iou": 0.7,
+    "match_iou": 0.5,
+    "max_det": 300,
+    "confidence_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "benchmark_images": 10,
+    "benchmark_conf": 0.25,
+    "benchmark_repeats": 2,
+    "warmup": 3,
+    "examples_per_kind": 3
+  },
+  "dataset_identity": "2c28dd2ad5c5d856134fe74696510e6349e25457e07310df82edc682fc828afe",
+  "selection_sha256": "b1d06278cf598f0cb2058fac30b681004b6d69c3067eef6bd0d9f3d73df0d742",
+  "dataset_limitations": [
+    "COCO-listed images without annotations are treated as negatives; annotation completeness must be verified.",
+    "Exact RGB duplicates are removed; near-duplicates require verified flight/scene groups.",
+    "Actual split ratios can differ from 70/20/10 because complete groups are kept together.",
+    "Group isolation is only as reliable as the supplied group metadata; verify flight/location boundaries.",
+    "UNVERIFIED FILENAME GROUPS: series grouping is not confirmed flight/location separation; scores are preliminary.",
+    "Only frame 0 of multi-frame images is exported; annotations must describe that frame.",
+    "Only bottle, bag and can are target objects; other litter is not classified by this model.",
+    "Background images can contain non-target litter; they are not necessarily clean.",
+    "Source batches are separated, but independent locations/photographers are not verified.",
+    "Available Flickr 640px derivatives are used with explicit coordinate scaling; originals are a fallback.",
+    "EXIF display orientation is applied as in the official TACO loader; normalized RGB PNGs have longest side <=640px.",
+    "TACO includes ground-level outdoor images; this experiment does not validate drone, marine or satellite generalization."
+  ],
+  "environment": {
+    "python": "3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "ultralytics": "8.3.228",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.2.6",
+      "PyYAML": "6.0.3",
+      "Pillow": "11.3.0"
+    },
+    "git": {
+      "revision": "0cc3469a42770f7dd19ef681c5d03b2ef59f980a",
+      "dirty": true
+    }
+  },
+  "models": [
+    {
+      "name": "taco_n_types_30",
+      "weights": "models/b/taco_n_types_30/best.pt",
+      "weights_sha256": "c79e796446fc3734849f2311ed8cb08152c558aff6feec2f3779d7d8f09f6b4d",
+      "split": "test",
+      "images": 49,
+      "objects": 52,
+      "metrics": {
+        "precision": 0.5543324055355014,
+        "recall": 0.3421325051759834,
+        "mAP50": 0.43367606953113685,
+        "mAP50_95": 0.3311144490838442
+      },
+      "class_metrics": {
+        "bottle": {
+          "class_id": 0,
+          "precision": 0.5077843773985828,
+          "recall": 0.42857142857142855,
+          "mAP50": 0.4936297506170203,
+          "mAP50_95": 0.351680681066746
+        },
+        "bag": {
+          "class_id": 1,
+          "precision": 0.3679944829953729,
+          "recall": 0.25,
+          "mAP50": 0.3470357574845823,
+          "mAP50_95": 0.31413813209304264
+        },
+        "can": {
+          "class_id": 2,
+          "precision": 0.7872183562125485,
+          "recall": 0.34782608695652173,
+          "mAP50": 0.46036270049180805,
+          "mAP50_95": 0.3275245340917441
+        }
+      },
+      "operating_point": {
+        "conf": 0.4,
+        "tp": 19,
+        "fp": 17,
+        "fn": 33,
+        "precision": 0.5277777777777778,
+        "recall": 0.36538461538461536,
+        "f1": 0.4318181818181818
+      },
+      "class_operating_points": {
+        "bottle": {
+          "conf": 0.4,
+          "tp": 9,
+          "fp": 8,
+          "fn": 12,
+          "precision": 0.5294117647058824,
+          "recall": 0.42857142857142855,
+          "f1": 0.4736842105263158
+        },
+        "bag": {
+          "conf": 0.4,
+          "tp": 2,
+          "fp": 4,
+          "fn": 6,
+          "precision": 0.3333333333333333,
+          "recall": 0.25,
+          "f1": 0.28571428571428575
+        },
+        "can": {
+          "conf": 0.4,
+          "tp": 8,
+          "fp": 5,
+          "fn": 15,
+          "precision": 0.6153846153846154,
+          "recall": 0.34782608695652173,
+          "f1": 0.4444444444444444
+        }
+      },
+      "confidence_curve": [],
+      "latency": {
+        "device": "0",
+        "device_name": "NVIDIA GeForce GTX 1650",
+        "torch": "2.6.0+cu124",
+        "imgsz": 640,
+        "conf": 0.25,
+        "batch": 1,
+        "precision": "FP32",
+        "rect": false,
+        "warmup": 3,
+        "repeats": 2,
+        "samples": 20,
+        "images": [
+          "images/test/image_00000964.png",
+          "images/test/image_00000975.png",
+          "images/test/image_00000996.png",
+          "images/test/image_00001010.png",
+          "images/test/image_00001021.png",
+          "images/test/image_00001029.png",
+          "images/test/image_00001039.png",
+          "images/test/image_00001046.png",
+          "images/test/image_00001061.png",
+          "images/test/image_00001075.png"
+        ],
+        "source_sizes": [
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ]
+        ],
+        "mean_ms": 18.423274997621775,
+        "median_ms": 18.469300004653633,
+        "p95_ms": 18.871985029545613,
+        "measurements_ms": [
+          18.077499989885837,
+          17.16020004823804,
+          18.289499974343926,
+          18.396299972664565,
+          18.756900040898472,
+          18.830400018487126,
+          18.67089996812865,
+          18.504499981645495,
+          18.85500003118068,
+          18.47569999517873,
+          18.415400001686066,
+          17.27829995797947,
+          18.438900006003678,
+          18.462900014128536,
+          18.48149998113513,
+          18.70529999723658,
+          18.7022999743931,
+          19.194699998479337,
+          18.338599998969585,
+          18.430700001772493
+        ],
+        "scope": "RGB image copy + preprocessing + inference + NMS + CPU boxes; synchronized; excludes file decode, model load, drawing and disk writes"
+      },
+      "examples": {
+        "tp": [
+          {
+            "image": "images/test/image_00000996.png",
+            "file": "examples/image_00000996.jpg"
+          },
+          {
+            "image": "images/test/image_00000999.png",
+            "file": "examples/image_00000999.jpg"
+          },
+          {
+            "image": "images/test/image_00001002.png",
+            "file": "examples/image_00001002.jpg"
+          }
+        ],
+        "fp": [
+          {
+            "image": "images/test/image_00000965.png",
+            "file": "examples/image_00000965.jpg"
+          },
+          {
+            "image": "images/test/image_00000966.png",
+            "file": "examples/image_00000966.jpg"
+          },
+          {
+            "image": "images/test/image_00000970.png",
+            "file": "examples/image_00000970.jpg"
+          }
+        ],
+        "fn": [
+          {
+            "image": "images/test/image_00000964.png",
+            "file": "examples/image_00000964.jpg"
+          },
+          {
+            "image": "images/test/image_00000965.png",
+            "file": "examples/image_00000965.jpg"
+          },
+          {
+            "image": "images/test/image_00000966.png",
+            "file": "examples/image_00000966.jpg"
+          }
+        ]
+      },
+      "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."
+    }
+  ]
+}

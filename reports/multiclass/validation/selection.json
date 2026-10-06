@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "selected_on": "val",
+  "criterion": "max mAP50_95; tie: model name",
+  "name": "taco_n_types_30",
+  "weights": "models/b/taco_n_types_30/best.pt",
+  "weights_sha256": "c79e796446fc3734849f2311ed8cb08152c558aff6feec2f3779d7d8f09f6b4d",
+  "conf": 0.4,
+  "dataset_identity": "2c28dd2ad5c5d856134fe74696510e6349e25457e07310df82edc682fc828afe",
+  "settings": {
+    "data": "data/processed/taco_types/data.yaml",
+    "reference": "reports/multiclass/dataset",
+    "device": "0",
+    "imgsz": 640,
+    "nms_iou": 0.7,
+    "match_iou": 0.5,
+    "max_det": 300,
+    "confidence_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "benchmark_images": 10,
+    "benchmark_conf": 0.25,
+    "benchmark_repeats": 2,
+    "warmup": 3,
+    "examples_per_kind": 3
+  },
+  "validation_report": "reports/multiclass/validation/comparison.json",
+  "validation_report_sha256": "3b5802ccc39872b08d68ba16be934217e5946d1aa764e101f71eda83ccb98b2b"
+}

@@ -27,6 +27,7 @@ def run_test(selection_path, output, *, device=None, data=None):
         report = {"schema_version": 1, "split": "test", "test_evaluated": True,
                   "created_at": datetime.now(timezone.utc).isoformat(), "settings": config,
                   "dataset_identity": dataset.identity, "selection_sha256": sha256(local_path(selection_path)),
+                  "dataset_limitations": dataset.manifest.get("limitations", []),
                   "environment": environment_snapshot(ROOT), "models": [row]}
         write_json(output / "comparison.json", report)
         write_report(output, report)

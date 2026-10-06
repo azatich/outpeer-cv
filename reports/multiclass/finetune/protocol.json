@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "initial_weights": "models/b/taco_n_types_30/best.pt",
+  "initial_weights_sha256": "c79e796446fc3734849f2311ed8cb08152c558aff6feec2f3779d7d8f09f6b4d",
+  "config_sha256": "34d28b65084a7687414d7a54a0ec28b1e5ae7d0f3dfbc411e80c8a8ff9e901c6",
+  "dataset_identity": "2c28dd2ad5c5d856134fe74696510e6349e25457e07310df82edc682fc828afe",
+  "train_images": 450,
+  "train_objects": 519,
+  "max_additional_epochs": 50,
+  "marine_images_added": false,
+  "selection": "max validation mAP50_95; threshold: max validation micro F1",
+  "test_note": "TACO test was evaluated in the earlier run; this is a repeated benchmark, not a new independent holdout.",
+  "variants": [
+    {
+      "name": "taco_n_types_finetune_50",
+      "config": "configs/multiclass/yolov8n_taco_finetune.yaml",
+      "max_additional_epochs": 50,
+      "lr0": 0.0002,
+      "warmup_epochs": 1
+    },
+    {
+      "name": "taco_n_types_finetune_careful_30",
+      "config": "configs/multiclass/yolov8n_taco_finetune_careful.yaml",
+      "config_sha256": "ac51770f3172a48c7a756f8fc2872f101b27f7b39cc2114dfea9ecf120e0134d",
+      "max_additional_epochs": 30,
+      "lr0": 5e-05,
+      "warmup_epochs": 0,
+      "reason": "Conservative adaptation after validation metrics in the first attempt decreased; no test results used.",
+      "batch": 8
+    }
+  ],
+  "completed_runs": [
+    {
+      "name": "taco_n_types_finetune_50",
+      "completed_epochs": 50,
+      "best_training_epoch": 42,
+      "best_internal_val_mAP50_95": 0.28405,
+      "weights_sha256": "c9e8a9d8d8ce2b3b35e9dcb6287bc8ded8fd20fe87e2f1c976befb4bcdc04183"
+    },
+    {
+      "name": "taco_n_types_finetune_careful_30",
+      "completed_epochs": 13,
+      "best_training_epoch": 3,
+      "best_internal_val_mAP50_95": 0.27193,
+      "weights_sha256": "23ed97edcfb144c5df4e7d5eab217c43222b3b15faac2ce0ff31b1edc062876c"
+    }
+  ]
+}

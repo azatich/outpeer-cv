@@ -1,0 +1,42 @@
+{
+  "width": 480,
+  "height": 640,
+  "count": 1,
+  "detections": [
+    {
+      "class_id": 1,
+      "class_name": "bag",
+      "confidence": 0.7604349255561829,
+      "xyxy": [
+        82.62939453125,
+        337.7938232421875,
+        252.4638671875,
+        513.4423217773438
+      ]
+    }
+  ],
+  "counts_by_class": {
+    "bottle": 0,
+    "bag": 1,
+    "can": 0
+  },
+  "predict_ms": 19.581900036428124,
+  "device": "0",
+  "stage_ms": {
+    "preprocess": 2.4424000293947756,
+    "inference": 11.480500048492104,
+    "postprocess": 2.6980999973602593
+  },
+  "imgsz": 640,
+  "conf": 0.4,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "weights": "C:\\Users\\azatm2\\projects\\outpeer-cv\\models\\b\\taco_n_types_30\\best.pt",
+  "classes": {
+    "0": "bottle",
+    "1": "bag",
+    "2": "can"
+  },
+  "coordinate_system": "xyxy pixels of EXIF-oriented RGB image",
+  "timing_scope": "predict + CPU box extraction; excludes load/decode/drawing; may include first-call warmup"
+}

@@ -1,3 +1,5 @@
 # Selection pins the exact report bytes; preserve them across Git/OS newline settings.
 /reports/b/validation/comparison.json -text whitespace=cr-at-eol
 /reports/b/validation/selection.json -text whitespace=cr-at-eol
+/reports/multiclass/**/comparison.json -text whitespace=cr-at-eol
+/reports/multiclass/**/selection.json -text whitespace=cr-at-eol

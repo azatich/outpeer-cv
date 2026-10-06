@@ -1,0 +1,78 @@
+{
+  "images": {
+    "source_images": 680,
+    "unique_images": 680,
+    "duplicates_removed": 0,
+    "output_images": 680,
+    "objects": 834,
+    "unique_source_objects": 834,
+    "source_objects_by_class": {
+      "0": 439,
+      "1": 122,
+      "2": 273
+    },
+    "by_split": {
+      "train": {
+        "images": 450,
+        "objects": 519,
+        "negative_images": 110,
+        "source_images": 450
+      },
+      "val": {
+        "images": 181,
+        "objects": 263,
+        "negative_images": 30,
+        "source_images": 181
+      },
+      "test": {
+        "images": 49,
+        "objects": 52,
+        "negative_images": 10,
+        "source_images": 49
+      }
+    }
+  },
+  "objects_by_split_and_class": {
+    "train": {
+      "1": 88,
+      "0": 277,
+      "2": 154
+    },
+    "val": {
+      "0": 141,
+      "2": 96,
+      "1": 26
+    },
+    "test": {
+      "0": 21,
+      "2": 23,
+      "1": 8
+    }
+  },
+  "classes": [
+    "bottle",
+    "bag",
+    "can"
+  ],
+  "class_mapping": {
+    "bottle": [
+      "Other plastic bottle",
+      "Clear plastic bottle",
+      "Glass bottle"
+    ],
+    "bag": [
+      "Paper bag",
+      "Plastified paper bag",
+      "Garbage bag",
+      "Single-use carrier bag",
+      "Polypropylene bag"
+    ],
+    "can": [
+      "Food Can",
+      "Aerosol",
+      "Drink can"
+    ]
+  },
+  "source_revision": "29de1a9ba05a647b83a90f18d7772e20bb23d846",
+  "unavailable_images": 0
+}

@@ -1,0 +1,78 @@
+name: taco_n_types_finetune_careful_30
+model: models/b/taco_n_types_30/best.pt
+data: data/processed/taco_types/data.yaml
+seed: 42
+train:
+  epochs: 30
+  imgsz: 640
+  batch: 8
+  workers: 0
+  patience: 10
+  optimizer: AdamW
+  lr0: 5.0e-05
+  lrf: 0.1
+  weight_decay: 0.0005
+  warmup_epochs: 0.0
+  cos_lr: true
+  close_mosaic: 10
+  fraction: 1.0
+  cache: false
+  amp: false
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 0.2
+  mixup: 0.0
+model_resolved: C:\Users\azatm2\projects\outpeer-cv\models\b\taco_n_types_30\best.pt
+train_arguments:
+  epochs: 30
+  imgsz: 640
+  batch: 8
+  workers: 0
+  patience: 10
+  optimizer: AdamW
+  lr0: 5.0e-05
+  lrf: 0.1
+  weight_decay: 0.0005
+  warmup_epochs: 0.0
+  cos_lr: true
+  close_mosaic: 10
+  fraction: 1.0
+  cache: false
+  amp: false
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 0.2
+  mixup: 0.0
+  data: C:\Users\azatm2\projects\outpeer-cv\runs\b\taco_n_types_finetune_careful_30\dataset.resolved.yaml
+  project: C:\Users\azatm2\projects\outpeer-cv\runs\b
+  name: taco_n_types_finetune_careful_30
+  exist_ok: true
+  seed: 42
+  deterministic: true
+  device: '0'
+  pretrained: true
+  val: true
+  split: val
+  save: true
+  plots: true
+  resume: false
+runtime:
+  amp: false
+  device: '0'

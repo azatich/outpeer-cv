@@ -1,0 +1,6 @@
+{
+  "selection": "reports/multiclass/finetune/validation/selection.json",
+  "model": "taco_n_types_finetune_50",
+  "criterion": "max mAP50_95; tie: model name",
+  "note": "Chosen on validation before test evaluation."
+}

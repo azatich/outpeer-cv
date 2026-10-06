@@ -106,7 +106,6 @@ def download(output: Path, limit: int | None = None, workers: int = 6,
     if limit is not None:
         if limit < 1:
             raise ValueError("--limit must be positive")
-        # Take representatives across groups instead of the first video's frames.
         groups: dict[str, list[dict]] = {}
         for record in records:
             groups.setdefault(sequence_group(record["file_name"]), []).append(record)

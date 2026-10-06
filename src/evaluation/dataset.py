@@ -1,4 +1,4 @@
-"""Check the prepared data against A's fixed split before experiments."""
+"""Check prepared data against a frozen split/pixel reference before experiments."""
 
 from __future__ import annotations
 
@@ -14,8 +14,8 @@ import struct
 from PIL import Image
 import yaml
 
-from src.inference.predict import ROOT, local_path
-from src.training.train import sha256
+from src.inference.predict import ROOT, local_path, validate_classes
+from src.training.train import sha256, _class_names
 
 
 def read_json(path: Path) -> dict:
@@ -50,7 +50,7 @@ class Sample:
     truth: list[Truth]
 
 
-def read_labels(path: Path, width: int, height: int) -> list[Truth]:
+def read_labels(path: Path, width: int, height: int, num_classes: int = 1) -> list[Truth]:
     """Missing labels are an error, not silently treated as a negative scene."""
     result = []
     for line in path.read_text(encoding="utf-8").splitlines():
@@ -60,13 +60,13 @@ def read_labels(path: Path, width: int, height: int) -> list[Truth]:
         if len(parts) != 5:
             raise ValueError(f"Invalid YOLO label: {path}: {line}")
         cls, x, y, w, h = map(float, parts)
-        if not all(math.isfinite(v) for v in (cls, x, y, w, h)) or cls != 0:
-            raise ValueError(f"Expected finite coordinates and class 0: {path}")
+        if not all(math.isfinite(v) for v in (cls, x, y, w, h)) or cls != int(cls) or not 0 <= cls < num_classes:
+            raise ValueError(f"Expected finite coordinates and a class in [0,{num_classes-1}]: {path}")
         if not (0 <= x <= 1 and 0 <= y <= 1 and 0 < w <= 1 and 0 < h <= 1):
             raise ValueError(f"Out-of-range normalized box: {path}")
         if min(x-w/2, y-h/2) < -1e-6 or max(x+w/2, y+h/2) > 1+1e-6:
             raise ValueError(f"Box extends beyond image: {path}")
-        result.append(Truth(0, (max(0, (x-w/2)*width), max(0, (y-h/2)*height),
+        result.append(Truth(int(cls), (max(0, (x-w/2)*width), max(0, (y-h/2)*height),
                                 min(width, (x+w/2)*width), min(height, (y+h/2)*height))))
     return result
 
@@ -79,24 +79,28 @@ class PreparedDataset:
         raw = yaml.safe_load(self.path.read_text(encoding="utf-8-sig"))
         root = Path(raw.get("path", "."))
         root = (root if root.is_absolute() else self.root / root).resolve()
-        if root != self.root or raw.get("names") not in ({0: "rubbish"}, {"0": "rubbish"}, ["rubbish"]):
-            raise ValueError("Expected prepared dataset root and class 0=rubbish")
+        self.names = dict(enumerate(_class_names(raw.get("names"))))
+        validate_classes(self.names)
+        if root != self.root:
+            raise ValueError("Expected prepared dataset root")
         for split in ("train", "val", "test"):
             if not isinstance(raw.get(split), str) or (root / raw[split]).resolve() != root / "images" / split:
                 raise ValueError(f"Expected images/{split} in data.yaml")
         self.manifest = read_json(root / "dataset_manifest.json")
+        if {c["id"]: c["name"] for c in self.manifest["categories"]} != self.names:
+            raise ValueError("Dataset YAML class names differ from manifest")
         reference_manifest = read_json(self.reference / "dataset_manifest.json")
         for key in ("source_annotations_sha256", "seed", "categories", "image_policy", "tiling"):
             if self.manifest.get(key) != reference_manifest.get(key):
-                raise ValueError(f"Dataset differs from A: {key}")
+                raise ValueError(f"Dataset differs from frozen reference: {key}")
         if self.manifest.get("tiling", {}).get("enabled"):
             raise ValueError("This comparison requires the original untiled split")
         self.split_rows = csv_rows(root / "split_manifest.csv")
         self.tiles = csv_rows(root / "tiles.csv")
         if self.split_rows != csv_rows(self.reference / "split_manifest.csv"):
-            raise ValueError("Split/pixel manifest differs from A; do not resplit the dataset")
+            raise ValueError("Split/pixel manifest differs from frozen reference; do not resplit the dataset")
         if self.tiles != csv_rows(self.reference / "tiles.csv"):
-            raise ValueError("Prepared image mapping differs from A")
+            raise ValueError("Prepared image mapping differs from frozen reference")
         labels = {}
         for row in self.tiles:
             relative = Path(row["output_file"])
@@ -114,7 +118,7 @@ class PreparedDataset:
     def resolved_yaml(self, split: str) -> dict:
         if split not in {"val", "test"}:
             raise ValueError("Evaluation split must be val or test")
-        value = {"path": str(self.root), "names": {0: "rubbish"},
+        value = {"path": str(self.root), "names": self.names,
                  "train": str(self.root / "images/train"), "val": str(self.root / "images/val")}
         if split == "test":
             value["test"] = str(self.root / "images/test")
@@ -137,12 +141,12 @@ class PreparedDataset:
                 rgb = image.convert("RGB")
                 digest = hashlib.sha256(struct.pack(">II", *rgb.size) + rgb.tobytes()).hexdigest()
                 if digest != hashes[row["image_id"]]:
-                    raise ValueError(f"Prepared pixels differ from A: {image_path}")
+                    raise ValueError(f"Prepared pixels differ from reference: {image_path}")
                 if image.getexif().get(274, 1) != 1:
                     raise ValueError(f"Prepared images must have normalized EXIF: {image_path}")
                 width, height = rgb.size
             label = self.root / "labels" / split / image_path.with_suffix(".txt").name
-            truth = read_labels(label, width, height)
+            truth = read_labels(label, width, height, len(self.names))
             if len(truth) != int(row["objects"]):
                 raise ValueError(f"Object count differs from preparation: {label}")
             samples.append(Sample(image_path, row["output_file"], width, height, truth))

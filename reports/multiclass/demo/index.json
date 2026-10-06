@@ -1,0 +1,26 @@
+{
+  "examples": [
+    {
+      "class": "bottle",
+      "source": "images/test/image_00001013.png",
+      "status": "correct_detection",
+      "input": "bottle-input.png",
+      "result": "bottle-result.png"
+    },
+    {
+      "class": "bag",
+      "source": "images/test/image_00001041.png",
+      "status": "correct_detection",
+      "input": "bag-input.png",
+      "result": "bag-result.png"
+    },
+    {
+      "class": "can",
+      "source": "images/test/image_00001061.png",
+      "status": "correct_detection",
+      "input": "can-input.png",
+      "result": "can-result.png"
+    }
+  ],
+  "note": "Examples illustrate per-class detections after frozen test evaluation; they are not used to tune the model or compute aggregate metrics."
+}

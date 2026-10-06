@@ -7,7 +7,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_app_explains_missing_model():
-    with patch("app.main.available_models", return_value={}):
+    with patch("app.main.available_models", return_value={}), patch("app.main.load_selection", side_effect=FileNotFoundError("No installed model")):
         app = AppTest.from_string("from app.main import main\nmain()").run(timeout=30)
     assert not app.exception
     assert "best.pt" in app.warning[0].value

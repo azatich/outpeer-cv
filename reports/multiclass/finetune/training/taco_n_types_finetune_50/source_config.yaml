@@ -1,0 +1,35 @@
+# Continue from the trained three-class checkpoint, on the unchanged train split.
+# This is TACO fine-tuning; no newly annotated marine images are available.
+name: taco_n_types_finetune_50
+model: models/b/taco_n_types_30/best.pt
+data: data/processed/taco_types/data.yaml
+seed: 42
+train:
+  epochs: 50
+  imgsz: 640
+  batch: 4
+  workers: 0
+  patience: 15
+  optimizer: AdamW
+  lr0: 0.0002
+  lrf: 0.1
+  weight_decay: 0.0005
+  warmup_epochs: 1.0
+  cos_lr: true
+  close_mosaic: 10
+  fraction: 1.0
+  cache: false
+  amp: false
+augmentation:
+  hsv_h: 0.015
+  hsv_s: 0.4
+  hsv_v: 0.3
+  degrees: 0.0
+  translate: 0.1
+  scale: 0.5
+  shear: 0.0
+  perspective: 0.0
+  flipud: 0.0
+  fliplr: 0.5
+  mosaic: 0.2
+  mixup: 0.0

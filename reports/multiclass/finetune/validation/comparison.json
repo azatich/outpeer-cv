@@ -1,0 +1,1103 @@
+{
+  "schema_version": 1,
+  "split": "val",
+  "test_evaluated": false,
+  "created_at": "2026-10-05T18:50:49.659484+00:00",
+  "dataset_identity": "2c28dd2ad5c5d856134fe74696510e6349e25457e07310df82edc682fc828afe",
+  "settings": {
+    "data": "data/processed/taco_types/data.yaml",
+    "reference": "reports/multiclass/dataset",
+    "device": "0",
+    "imgsz": 640,
+    "nms_iou": 0.7,
+    "match_iou": 0.5,
+    "max_det": 300,
+    "confidence_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "benchmark_images": 10,
+    "benchmark_conf": 0.25,
+    "benchmark_repeats": 2,
+    "warmup": 3,
+    "examples_per_kind": 3
+  },
+  "dataset_limitations": [
+    "COCO-listed images without annotations are treated as negatives; annotation completeness must be verified.",
+    "Exact RGB duplicates are removed; near-duplicates require verified flight/scene groups.",
+    "Actual split ratios can differ from 70/20/10 because complete groups are kept together.",
+    "Group isolation is only as reliable as the supplied group metadata; verify flight/location boundaries.",
+    "UNVERIFIED FILENAME GROUPS: series grouping is not confirmed flight/location separation; scores are preliminary.",
+    "Only frame 0 of multi-frame images is exported; annotations must describe that frame.",
+    "Only bottle, bag and can are target objects; other litter is not classified by this model.",
+    "Background images can contain non-target litter; they are not necessarily clean.",
+    "Source batches are separated, but independent locations/photographers are not verified.",
+    "Available Flickr 640px derivatives are used with explicit coordinate scaling; originals are a fallback.",
+    "EXIF display orientation is applied as in the official TACO loader; normalized RGB PNGs have longest side <=640px.",
+    "TACO includes ground-level outdoor images; this experiment does not validate drone, marine or satellite generalization."
+  ],
+  "environment": {
+    "python": "3.13.9 (tags/v3.13.9:8183fa5, Oct 14 2025, 14:09:13) [MSC v.1944 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "packages": {
+      "ultralytics": "8.3.228",
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "numpy": "2.2.6",
+      "PyYAML": "6.0.3",
+      "Pillow": "11.3.0"
+    },
+    "git": {
+      "revision": "0cc3469a42770f7dd19ef681c5d03b2ef59f980a",
+      "dirty": true
+    }
+  },
+  "models": [
+    {
+      "name": "taco_n_types_30",
+      "weights": "models/b/taco_n_types_30/best.pt",
+      "weights_sha256": "c79e796446fc3734849f2311ed8cb08152c558aff6feec2f3779d7d8f09f6b4d",
+      "split": "val",
+      "images": 181,
+      "objects": 263,
+      "metrics": {
+        "precision": 0.5057252048120568,
+        "recall": 0.3541054617933462,
+        "mAP50": 0.3644904529499831,
+        "mAP50_95": 0.2616735606714645
+      },
+      "class_metrics": {
+        "bottle": {
+          "class_id": 0,
+          "precision": 0.5620426437838907,
+          "recall": 0.48226950354609927,
+          "mAP50": 0.5041512745027582,
+          "mAP50_95": 0.371599669428137
+        },
+        "bag": {
+          "class_id": 1,
+          "precision": 0.31810619185099703,
+          "recall": 0.2692307692307692,
+          "mAP50": 0.19774297027479626,
+          "mAP50_95": 0.12392416245635754
+        },
+        "can": {
+          "class_id": 2,
+          "precision": 0.6370267788012829,
+          "recall": 0.3108161126031701,
+          "mAP50": 0.3915771140723949,
+          "mAP50_95": 0.289496850129899
+        }
+      },
+      "operating_point": {
+        "conf": 0.4,
+        "tp": 101,
+        "fp": 67,
+        "fn": 162,
+        "precision": 0.6011904761904762,
+        "recall": 0.3840304182509506,
+        "f1": 0.46867749419953597
+      },
+      "class_operating_points": {
+        "bottle": {
+          "conf": 0.4,
+          "tp": 67,
+          "fp": 45,
+          "fn": 74,
+          "precision": 0.5982142857142857,
+          "recall": 0.475177304964539,
+          "f1": 0.5296442687747035
+        },
+        "bag": {
+          "conf": 0.4,
+          "tp": 7,
+          "fp": 11,
+          "fn": 19,
+          "precision": 0.3888888888888889,
+          "recall": 0.2692307692307692,
+          "f1": 0.3181818181818182
+        },
+        "can": {
+          "conf": 0.4,
+          "tp": 27,
+          "fp": 11,
+          "fn": 69,
+          "precision": 0.7105263157894737,
+          "recall": 0.28125,
+          "f1": 0.40298507462686567
+        }
+      },
+      "confidence_curve": [
+        {
+          "conf": 0.05,
+          "tp": 153,
+          "fp": 616,
+          "fn": 110,
+          "precision": 0.19895968790637192,
+          "recall": 0.5817490494296578,
+          "f1": 0.2965116279069767
+        },
+        {
+          "conf": 0.1,
+          "tp": 139,
+          "fp": 355,
+          "fn": 124,
+          "precision": 0.2813765182186235,
+          "recall": 0.5285171102661597,
+          "f1": 0.3672391017173051
+        },
+        {
+          "conf": 0.15,
+          "tp": 129,
+          "fp": 220,
+          "fn": 134,
+          "precision": 0.36962750716332377,
+          "recall": 0.49049429657794674,
+          "f1": 0.42156862745098034
+        },
+        {
+          "conf": 0.2,
+          "tp": 123,
+          "fp": 168,
+          "fn": 140,
+          "precision": 0.422680412371134,
+          "recall": 0.467680608365019,
+          "f1": 0.444043321299639
+        },
+        {
+          "conf": 0.25,
+          "tp": 118,
+          "fp": 132,
+          "fn": 145,
+          "precision": 0.472,
+          "recall": 0.44866920152091255,
+          "f1": 0.4600389863547758
+        },
+        {
+          "conf": 0.3,
+          "tp": 111,
+          "fp": 105,
+          "fn": 152,
+          "precision": 0.5138888888888888,
+          "recall": 0.4220532319391635,
+          "f1": 0.46346555323590816
+        },
+        {
+          "conf": 0.35,
+          "tp": 107,
+          "fp": 89,
+          "fn": 156,
+          "precision": 0.5459183673469388,
+          "recall": 0.4068441064638783,
+          "f1": 0.4662309368191721
+        },
+        {
+          "conf": 0.4,
+          "tp": 101,
+          "fp": 67,
+          "fn": 162,
+          "precision": 0.6011904761904762,
+          "recall": 0.3840304182509506,
+          "f1": 0.46867749419953597
+        },
+        {
+          "conf": 0.45,
+          "tp": 94,
+          "fp": 50,
+          "fn": 169,
+          "precision": 0.6527777777777778,
+          "recall": 0.3574144486692015,
+          "f1": 0.4619164619164619
+        },
+        {
+          "conf": 0.5,
+          "tp": 83,
+          "fp": 44,
+          "fn": 180,
+          "precision": 0.6535433070866141,
+          "recall": 0.3155893536121673,
+          "f1": 0.4256410256410256
+        },
+        {
+          "conf": 0.6,
+          "tp": 67,
+          "fp": 25,
+          "fn": 196,
+          "precision": 0.7282608695652174,
+          "recall": 0.25475285171102663,
+          "f1": 0.37746478873239436
+        },
+        {
+          "conf": 0.7,
+          "tp": 55,
+          "fp": 16,
+          "fn": 208,
+          "precision": 0.7746478873239436,
+          "recall": 0.20912547528517111,
+          "f1": 0.3293413173652695
+        },
+        {
+          "conf": 0.8,
+          "tp": 46,
+          "fp": 7,
+          "fn": 217,
+          "precision": 0.8679245283018868,
+          "recall": 0.17490494296577946,
+          "f1": 0.2911392405063291
+        }
+      ],
+      "latency": {
+        "device": "0",
+        "device_name": "NVIDIA GeForce GTX 1650",
+        "torch": "2.6.0+cu124",
+        "imgsz": 640,
+        "conf": 0.25,
+        "batch": 1,
+        "precision": "FP32",
+        "rect": false,
+        "warmup": 3,
+        "repeats": 2,
+        "samples": 20,
+        "images": [
+          "images/val/image_00000000.png",
+          "images/val/image_00000021.png",
+          "images/val/image_00000042.png",
+          "images/val/image_00000075.png",
+          "images/val/image_00000104.png",
+          "images/val/image_00000136.png",
+          "images/val/image_00001080.png",
+          "images/val/image_00001108.png",
+          "images/val/image_00001137.png",
+          "images/val/image_00001168.png"
+        ],
+        "source_sizes": [
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            292
+          ],
+          [
+            292,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            640,
+            480
+          ]
+        ],
+        "mean_ms": 16.37833000277169,
+        "median_ms": 16.35615000850521,
+        "p95_ms": 17.563195014372468,
+        "measurements_ms": [
+          17.522600013762712,
+          17.412899993360043,
+          16.373899998143315,
+          17.397999996319413,
+          15.440199989825487,
+          14.250699954573065,
+          16.16729999659583,
+          16.192000010050833,
+          16.169300011824816,
+          17.39100000122562,
+          17.291500000283122,
+          17.11100002285093,
+          16.338400018867105,
+          17.16129999840632,
+          15.266699949279428,
+          14.144500019028783,
+          16.222900012508035,
+          16.400200023781508,
+          14.97770001878962,
+          18.334500025957823
+        ],
+        "scope": "RGB image copy + preprocessing + inference + NMS + CPU boxes; synchronized; excludes file decode, model load, drawing and disk writes"
+      },
+      "examples": {
+        "tp": [
+          {
+            "image": "images/val/image_00000000.png",
+            "file": "examples/image_00000000.jpg"
+          },
+          {
+            "image": "images/val/image_00000002.png",
+            "file": "examples/image_00000002.jpg"
+          },
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          }
+        ],
+        "fp": [
+          {
+            "image": "images/val/image_00000000.png",
+            "file": "examples/image_00000000.jpg"
+          },
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          },
+          {
+            "image": "images/val/image_00000006.png",
+            "file": "examples/image_00000006.jpg"
+          }
+        ],
+        "fn": [
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          },
+          {
+            "image": "images/val/image_00000005.png",
+            "file": "examples/image_00000005.jpg"
+          },
+          {
+            "image": "images/val/image_00000006.png",
+            "file": "examples/image_00000006.jpg"
+          }
+        ]
+      },
+      "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."
+    },
+    {
+      "name": "taco_n_types_finetune_50",
+      "weights": "models/b/taco_n_types_finetune_50/best.pt",
+      "weights_sha256": "c9e8a9d8d8ce2b3b35e9dcb6287bc8ded8fd20fe87e2f1c976befb4bcdc04183",
+      "split": "val",
+      "images": 181,
+      "objects": 263,
+      "metrics": {
+        "precision": 0.4672462159279845,
+        "recall": 0.3686760068359652,
+        "mAP50": 0.3908826956909013,
+        "mAP50_95": 0.2888189926473145
+      },
+      "class_metrics": {
+        "bottle": {
+          "class_id": 0,
+          "precision": 0.5492108779792357,
+          "recall": 0.5184440032323806,
+          "mAP50": 0.5042089044126394,
+          "mAP50_95": 0.38834024809584566
+        },
+        "bag": {
+          "class_id": 1,
+          "precision": 0.22575057986402358,
+          "recall": 0.20216735060884836,
+          "mAP50": 0.2182507153167679,
+          "mAP50_95": 0.14256729824020173
+        },
+        "can": {
+          "class_id": 2,
+          "precision": 0.6267771899406942,
+          "recall": 0.3854166666666667,
+          "mAP50": 0.4501884673432966,
+          "mAP50_95": 0.33554943160589573
+        }
+      },
+      "operating_point": {
+        "conf": 0.35,
+        "tp": 114,
+        "fp": 89,
+        "fn": 149,
+        "precision": 0.5615763546798029,
+        "recall": 0.43346007604562736,
+        "f1": 0.4892703862660944
+      },
+      "class_operating_points": {
+        "bottle": {
+          "conf": 0.35,
+          "tp": 72,
+          "fp": 55,
+          "fn": 69,
+          "precision": 0.5669291338582677,
+          "recall": 0.5106382978723404,
+          "f1": 0.5373134328358209
+        },
+        "bag": {
+          "conf": 0.35,
+          "tp": 5,
+          "fp": 16,
+          "fn": 21,
+          "precision": 0.23809523809523808,
+          "recall": 0.19230769230769232,
+          "f1": 0.21276595744680848
+        },
+        "can": {
+          "conf": 0.35,
+          "tp": 37,
+          "fp": 18,
+          "fn": 59,
+          "precision": 0.6727272727272727,
+          "recall": 0.3854166666666667,
+          "f1": 0.4900662251655629
+        }
+      },
+      "confidence_curve": [
+        {
+          "conf": 0.05,
+          "tp": 149,
+          "fp": 389,
+          "fn": 114,
+          "precision": 0.27695167286245354,
+          "recall": 0.5665399239543726,
+          "f1": 0.3720349563046192
+        },
+        {
+          "conf": 0.1,
+          "tp": 144,
+          "fp": 261,
+          "fn": 119,
+          "precision": 0.35555555555555557,
+          "recall": 0.5475285171102662,
+          "f1": 0.4311377245508982
+        },
+        {
+          "conf": 0.15,
+          "tp": 132,
+          "fp": 199,
+          "fn": 131,
+          "precision": 0.3987915407854985,
+          "recall": 0.5019011406844106,
+          "f1": 0.4444444444444444
+        },
+        {
+          "conf": 0.2,
+          "tp": 128,
+          "fp": 154,
+          "fn": 135,
+          "precision": 0.45390070921985815,
+          "recall": 0.4866920152091255,
+          "f1": 0.46972477064220186
+        },
+        {
+          "conf": 0.25,
+          "tp": 121,
+          "fp": 123,
+          "fn": 142,
+          "precision": 0.4959016393442623,
+          "recall": 0.4600760456273764,
+          "f1": 0.47731755424063116
+        },
+        {
+          "conf": 0.3,
+          "tp": 116,
+          "fp": 102,
+          "fn": 147,
+          "precision": 0.5321100917431193,
+          "recall": 0.44106463878326996,
+          "f1": 0.4823284823284823
+        },
+        {
+          "conf": 0.35,
+          "tp": 114,
+          "fp": 89,
+          "fn": 149,
+          "precision": 0.5615763546798029,
+          "recall": 0.43346007604562736,
+          "f1": 0.4892703862660944
+        },
+        {
+          "conf": 0.4,
+          "tp": 108,
+          "fp": 83,
+          "fn": 155,
+          "precision": 0.5654450261780105,
+          "recall": 0.41064638783269963,
+          "f1": 0.47577092511013214
+        },
+        {
+          "conf": 0.45,
+          "tp": 104,
+          "fp": 75,
+          "fn": 159,
+          "precision": 0.5810055865921788,
+          "recall": 0.39543726235741444,
+          "f1": 0.47058823529411764
+        },
+        {
+          "conf": 0.5,
+          "tp": 102,
+          "fp": 69,
+          "fn": 161,
+          "precision": 0.5964912280701754,
+          "recall": 0.38783269961977185,
+          "f1": 0.4700460829493087
+        },
+        {
+          "conf": 0.6,
+          "tp": 97,
+          "fp": 54,
+          "fn": 166,
+          "precision": 0.6423841059602649,
+          "recall": 0.3688212927756654,
+          "f1": 0.46859903381642515
+        },
+        {
+          "conf": 0.7,
+          "tp": 85,
+          "fp": 38,
+          "fn": 178,
+          "precision": 0.6910569105691057,
+          "recall": 0.3231939163498099,
+          "f1": 0.4404145077720207
+        },
+        {
+          "conf": 0.8,
+          "tp": 72,
+          "fp": 24,
+          "fn": 191,
+          "precision": 0.75,
+          "recall": 0.2737642585551331,
+          "f1": 0.40111420612813364
+        }
+      ],
+      "latency": {
+        "device": "0",
+        "device_name": "NVIDIA GeForce GTX 1650",
+        "torch": "2.6.0+cu124",
+        "imgsz": 640,
+        "conf": 0.25,
+        "batch": 1,
+        "precision": "FP32",
+        "rect": false,
+        "warmup": 3,
+        "repeats": 2,
+        "samples": 20,
+        "images": [
+          "images/val/image_00000000.png",
+          "images/val/image_00000021.png",
+          "images/val/image_00000042.png",
+          "images/val/image_00000075.png",
+          "images/val/image_00000104.png",
+          "images/val/image_00000136.png",
+          "images/val/image_00001080.png",
+          "images/val/image_00001108.png",
+          "images/val/image_00001137.png",
+          "images/val/image_00001168.png"
+        ],
+        "source_sizes": [
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            292
+          ],
+          [
+            292,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            640,
+            480
+          ]
+        ],
+        "mean_ms": 23.55556000256911,
+        "median_ms": 24.23029998317361,
+        "p95_ms": 25.05171000084374,
+        "measurements_ms": [
+          24.143599963281304,
+          23.917199985589832,
+          24.317000003065914,
+          24.6853000135161,
+          22.446800023317337,
+          19.806399999652058,
+          24.65229999506846,
+          22.589500003959984,
+          23.03760003997013,
+          24.99000000534579,
+          24.702299968339503,
+          25.22290003253147,
+          24.38570000231266,
+          24.413099978119135,
+          21.888700022827834,
+          20.156699989456683,
+          24.923300021328032,
+          23.026100010611117,
+          22.763999993912876,
+          25.042699999175966
+        ],
+        "scope": "RGB image copy + preprocessing + inference + NMS + CPU boxes; synchronized; excludes file decode, model load, drawing and disk writes"
+      },
+      "examples": {
+        "tp": [
+          {
+            "image": "images/val/image_00000000.png",
+            "file": "examples/image_00000000.jpg"
+          },
+          {
+            "image": "images/val/image_00000002.png",
+            "file": "examples/image_00000002.jpg"
+          },
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          }
+        ],
+        "fp": [
+          {
+            "image": "images/val/image_00000002.png",
+            "file": "examples/image_00000002.jpg"
+          },
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          },
+          {
+            "image": "images/val/image_00000005.png",
+            "file": "examples/image_00000005.jpg"
+          }
+        ],
+        "fn": [
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          },
+          {
+            "image": "images/val/image_00000005.png",
+            "file": "examples/image_00000005.jpg"
+          },
+          {
+            "image": "images/val/image_00000006.png",
+            "file": "examples/image_00000006.jpg"
+          }
+        ]
+      },
+      "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."
+    },
+    {
+      "name": "taco_n_types_finetune_careful_30",
+      "weights": "models/b/taco_n_types_finetune_careful_30/best.pt",
+      "weights_sha256": "23ed97edcfb144c5df4e7d5eab217c43222b3b15faac2ce0ff31b1edc062876c",
+      "split": "val",
+      "images": 181,
+      "objects": 263,
+      "metrics": {
+        "precision": 0.5579062325304291,
+        "recall": 0.3511118670979021,
+        "mAP50": 0.3789741573364689,
+        "mAP50_95": 0.28605829653977943
+      },
+      "class_metrics": {
+        "bottle": {
+          "class_id": 0,
+          "precision": 0.6175317623230606,
+          "recall": 0.475177304964539,
+          "mAP50": 0.5121442285335494,
+          "mAP50_95": 0.38575338911250157
+        },
+        "bag": {
+          "class_id": 1,
+          "precision": 0.3938579333098675,
+          "recall": 0.23076923076923078,
+          "mAP50": 0.23046813403508487,
+          "mAP50_95": 0.1631700553763121
+        },
+        "can": {
+          "class_id": 2,
+          "precision": 0.6623290019583594,
+          "recall": 0.34738906555993654,
+          "mAP50": 0.3943101094407723,
+          "mAP50_95": 0.3092514451305247
+        }
+      },
+      "operating_point": {
+        "conf": 0.4,
+        "tp": 107,
+        "fp": 71,
+        "fn": 156,
+        "precision": 0.601123595505618,
+        "recall": 0.4068441064638783,
+        "f1": 0.4852607709750567
+      },
+      "class_operating_points": {
+        "bottle": {
+          "conf": 0.4,
+          "tp": 68,
+          "fp": 45,
+          "fn": 73,
+          "precision": 0.6017699115044248,
+          "recall": 0.48226950354609927,
+          "f1": 0.5354330708661417
+        },
+        "bag": {
+          "conf": 0.4,
+          "tp": 6,
+          "fp": 9,
+          "fn": 20,
+          "precision": 0.4,
+          "recall": 0.23076923076923078,
+          "f1": 0.29268292682926833
+        },
+        "can": {
+          "conf": 0.4,
+          "tp": 33,
+          "fp": 17,
+          "fn": 63,
+          "precision": 0.66,
+          "recall": 0.34375,
+          "f1": 0.4520547945205479
+        }
+      },
+      "confidence_curve": [
+        {
+          "conf": 0.05,
+          "tp": 152,
+          "fp": 611,
+          "fn": 111,
+          "precision": 0.19921363040629095,
+          "recall": 0.5779467680608364,
+          "f1": 0.2962962962962963
+        },
+        {
+          "conf": 0.1,
+          "tp": 141,
+          "fp": 351,
+          "fn": 122,
+          "precision": 0.2865853658536585,
+          "recall": 0.5361216730038023,
+          "f1": 0.3735099337748344
+        },
+        {
+          "conf": 0.15,
+          "tp": 131,
+          "fp": 252,
+          "fn": 132,
+          "precision": 0.34203655352480417,
+          "recall": 0.49809885931558934,
+          "f1": 0.4055727554179566
+        },
+        {
+          "conf": 0.2,
+          "tp": 126,
+          "fp": 185,
+          "fn": 137,
+          "precision": 0.40514469453376206,
+          "recall": 0.4790874524714829,
+          "f1": 0.43902439024390244
+        },
+        {
+          "conf": 0.25,
+          "tp": 119,
+          "fp": 139,
+          "fn": 144,
+          "precision": 0.46124031007751937,
+          "recall": 0.4524714828897338,
+          "f1": 0.45681381957773515
+        },
+        {
+          "conf": 0.3,
+          "tp": 115,
+          "fp": 108,
+          "fn": 148,
+          "precision": 0.515695067264574,
+          "recall": 0.4372623574144487,
+          "f1": 0.47325102880658443
+        },
+        {
+          "conf": 0.35,
+          "tp": 111,
+          "fp": 91,
+          "fn": 152,
+          "precision": 0.5495049504950495,
+          "recall": 0.4220532319391635,
+          "f1": 0.47741935483870973
+        },
+        {
+          "conf": 0.4,
+          "tp": 107,
+          "fp": 71,
+          "fn": 156,
+          "precision": 0.601123595505618,
+          "recall": 0.4068441064638783,
+          "f1": 0.4852607709750567
+        },
+        {
+          "conf": 0.45,
+          "tp": 100,
+          "fp": 53,
+          "fn": 163,
+          "precision": 0.6535947712418301,
+          "recall": 0.38022813688212925,
+          "f1": 0.4807692307692307
+        },
+        {
+          "conf": 0.5,
+          "tp": 90,
+          "fp": 49,
+          "fn": 173,
+          "precision": 0.6474820143884892,
+          "recall": 0.34220532319391633,
+          "f1": 0.4477611940298507
+        },
+        {
+          "conf": 0.6,
+          "tp": 74,
+          "fp": 29,
+          "fn": 189,
+          "precision": 0.7184466019417476,
+          "recall": 0.2813688212927757,
+          "f1": 0.40437158469945356
+        },
+        {
+          "conf": 0.7,
+          "tp": 62,
+          "fp": 13,
+          "fn": 201,
+          "precision": 0.8266666666666667,
+          "recall": 0.23574144486692014,
+          "f1": 0.3668639053254438
+        },
+        {
+          "conf": 0.8,
+          "tp": 45,
+          "fp": 7,
+          "fn": 218,
+          "precision": 0.8653846153846154,
+          "recall": 0.17110266159695817,
+          "f1": 0.2857142857142857
+        }
+      ],
+      "latency": {
+        "device": "0",
+        "device_name": "NVIDIA GeForce GTX 1650",
+        "torch": "2.6.0+cu124",
+        "imgsz": 640,
+        "conf": 0.25,
+        "batch": 1,
+        "precision": "FP32",
+        "rect": false,
+        "warmup": 3,
+        "repeats": 2,
+        "samples": 20,
+        "images": [
+          "images/val/image_00000000.png",
+          "images/val/image_00000021.png",
+          "images/val/image_00000042.png",
+          "images/val/image_00000075.png",
+          "images/val/image_00000104.png",
+          "images/val/image_00000136.png",
+          "images/val/image_00001080.png",
+          "images/val/image_00001108.png",
+          "images/val/image_00001137.png",
+          "images/val/image_00001168.png"
+        ],
+        "source_sizes": [
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            292
+          ],
+          [
+            292,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            480,
+            640
+          ],
+          [
+            640,
+            480
+          ],
+          [
+            640,
+            480
+          ]
+        ],
+        "mean_ms": 19.91003499715589,
+        "median_ms": 19.99204998719506,
+        "p95_ms": 21.90015003143344,
+        "measurements_ms": [
+          17.972900008317083,
+          18.802199978381395,
+          18.846799968741834,
+          20.83150000544265,
+          17.519399989396334,
+          17.96010002726689,
+          21.50710002752021,
+          21.346499968785793,
+          21.24179998645559,
+          23.250099970027804,
+          21.829100034665316,
+          20.52759996149689,
+          19.51399998506531,
+          20.987300027627498,
+          18.154399993363768,
+          18.17789999768138,
+          21.11450000666082,
+          19.12279997486621,
+          19.024600042030215,
+          20.470099989324808
+        ],
+        "scope": "RGB image copy + preprocessing + inference + NMS + CPU boxes; synchronized; excludes file decode, model load, drawing and disk writes"
+      },
+      "examples": {
+        "tp": [
+          {
+            "image": "images/val/image_00000000.png",
+            "file": "examples/image_00000000.jpg"
+          },
+          {
+            "image": "images/val/image_00000002.png",
+            "file": "examples/image_00000002.jpg"
+          },
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          }
+        ],
+        "fp": [
+          {
+            "image": "images/val/image_00000000.png",
+            "file": "examples/image_00000000.jpg"
+          },
+          {
+            "image": "images/val/image_00000006.png",
+            "file": "examples/image_00000006.jpg"
+          },
+          {
+            "image": "images/val/image_00000009.png",
+            "file": "examples/image_00000009.jpg"
+          }
+        ],
+        "fn": [
+          {
+            "image": "images/val/image_00000003.png",
+            "file": "examples/image_00000003.jpg"
+          },
+          {
+            "image": "images/val/image_00000005.png",
+            "file": "examples/image_00000005.jpg"
+          },
+          {
+            "image": "images/val/image_00000006.png",
+            "file": "examples/image_00000006.jpg"
+          }
+        ]
+      },
+      "metric_note": "Ultralytics P/R use its own best-F1 curve point; operating_point is micro P/R at the fixed application threshold (greedy class-aware IoU matching)."
+    }
+  ],
+  "selection": {
+    "schema_version": 1,
+    "selected_on": "val",
+    "criterion": "max mAP50_95; tie: model name",
+    "name": "taco_n_types_finetune_50",
+    "weights": "models/b/taco_n_types_finetune_50/best.pt",
+    "weights_sha256": "c9e8a9d8d8ce2b3b35e9dcb6287bc8ded8fd20fe87e2f1c976befb4bcdc04183",
+    "conf": 0.35,
+    "dataset_identity": "2c28dd2ad5c5d856134fe74696510e6349e25457e07310df82edc682fc828afe",
+    "settings": {
+      "data": "data/processed/taco_types/data.yaml",
+      "reference": "reports/multiclass/dataset",
+      "device": "0",
+      "imgsz": 640,
+      "nms_iou": 0.7,
+      "match_iou": 0.5,
+      "max_det": 300,
+      "confidence_grid": [
+        0.05,
+        0.1,
+        0.15,
+        0.2,
+        0.25,
+        0.3,
+        0.35,
+        0.4,
+        0.45,
+        0.5,
+        0.6,
+        0.7,
+        0.8
+      ],
+      "benchmark_images": 10,
+      "benchmark_conf": 0.25,
+      "benchmark_repeats": 2,
+      "warmup": 3,
+      "examples_per_kind": 3
+    }
+  }
+}

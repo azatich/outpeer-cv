@@ -1,0 +1,64 @@
+{
+  "width": 480,
+  "height": 640,
+  "count": 3,
+  "detections": [
+    {
+      "class_id": 0,
+      "class_name": "bottle",
+      "confidence": 0.9763064980506897,
+      "xyxy": [
+        207.28189086914062,
+        108.35234069824219,
+        313.0809020996094,
+        173.34300231933594
+      ]
+    },
+    {
+      "class_id": 0,
+      "class_name": "bottle",
+      "confidence": 0.527495265007019,
+      "xyxy": [
+        119.37136840820312,
+        335.1575622558594,
+        228.16229248046875,
+        439.0807800292969
+      ]
+    },
+    {
+      "class_id": 2,
+      "class_name": "can",
+      "confidence": 0.43347713351249695,
+      "xyxy": [
+        233.36380004882812,
+        468.27294921875,
+        290.2001647949219,
+        549.4775390625
+      ]
+    }
+  ],
+  "counts_by_class": {
+    "bottle": 2,
+    "bag": 0,
+    "can": 1
+  },
+  "predict_ms": 641.0946000250988,
+  "device": "0",
+  "stage_ms": {
+    "preprocess": 56.506100052502006,
+    "inference": 66.00489997072145,
+    "postprocess": 4.537299973890185
+  },
+  "imgsz": 640,
+  "conf": 0.35,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "weights": "C:\\Users\\azatm2\\projects\\outpeer-cv\\models\\b\\taco_n_types_finetune_50\\best.pt",
+  "classes": {
+    "0": "bottle",
+    "1": "bag",
+    "2": "can"
+  },
+  "coordinate_system": "xyxy pixels of EXIF-oriented RGB image",
+  "timing_scope": "predict + CPU box extraction; excludes load/decode/drawing; may include first-call warmup"
+}

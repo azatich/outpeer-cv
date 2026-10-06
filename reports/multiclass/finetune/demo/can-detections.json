@@ -1,0 +1,42 @@
+{
+  "width": 640,
+  "height": 480,
+  "count": 1,
+  "detections": [
+    {
+      "class_id": 2,
+      "class_name": "can",
+      "confidence": 0.9895966649055481,
+      "xyxy": [
+        416.32623291015625,
+        134.48040771484375,
+        545.9002685546875,
+        239.4608154296875
+      ]
+    }
+  ],
+  "counts_by_class": {
+    "bottle": 0,
+    "bag": 0,
+    "can": 1
+  },
+  "predict_ms": 18.645200005266815,
+  "device": "0",
+  "stage_ms": {
+    "preprocess": 2.6291999965906143,
+    "inference": 10.393599979579449,
+    "postprocess": 2.9261999879963696
+  },
+  "imgsz": 640,
+  "conf": 0.35,
+  "nms_iou": 0.7,
+  "max_det": 300,
+  "weights": "C:\\Users\\azatm2\\projects\\outpeer-cv\\models\\b\\taco_n_types_finetune_50\\best.pt",
+  "classes": {
+    "0": "bottle",
+    "1": "bag",
+    "2": "can"
+  },
+  "coordinate_system": "xyxy pixels of EXIF-oriented RGB image",
+  "timing_scope": "predict + CPU box extraction; excludes load/decode/drawing; may include first-call warmup"
+}

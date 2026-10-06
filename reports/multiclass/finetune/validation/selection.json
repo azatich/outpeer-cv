@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "selected_on": "val",
+  "criterion": "max mAP50_95; tie: model name",
+  "name": "taco_n_types_finetune_50",
+  "weights": "models/b/taco_n_types_finetune_50/best.pt",
+  "weights_sha256": "c9e8a9d8d8ce2b3b35e9dcb6287bc8ded8fd20fe87e2f1c976befb4bcdc04183",
+  "conf": 0.35,
+  "dataset_identity": "2c28dd2ad5c5d856134fe74696510e6349e25457e07310df82edc682fc828afe",
+  "settings": {
+    "data": "data/processed/taco_types/data.yaml",
+    "reference": "reports/multiclass/dataset",
+    "device": "0",
+    "imgsz": 640,
+    "nms_iou": 0.7,
+    "match_iou": 0.5,
+    "max_det": 300,
+    "confidence_grid": [
+      0.05,
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35,
+      0.4,
+      0.45,
+      0.5,
+      0.6,
+      0.7,
+      0.8
+    ],
+    "benchmark_images": 10,
+    "benchmark_conf": 0.25,
+    "benchmark_repeats": 2,
+    "warmup": 3,
+    "examples_per_kind": 3
+  },
+  "validation_report": "reports/multiclass/finetune/validation/comparison.json",
+  "validation_report_sha256": "a2142adafdd4f53238a899f275d83c9ca5688e38bb6c7bd8512dc0e1003e6f37"
+}

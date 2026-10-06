@@ -1,4 +1,4 @@
-"""Run a local rubbish checkpoint on one photo; export PNG and JSON."""
+"""Run a local litter checkpoint on one photo; export PNG and JSON."""
 
 from __future__ import annotations
 
@@ -18,6 +18,15 @@ from PIL import Image, ImageDraw, ImageOps, UnidentifiedImageError
 
 ROOT = Path(__file__).resolve().parents[2]
 DEFAULT_WEIGHTS = ROOT / "models/a/a_n_baseline_20/best.pt"
+TYPE_WEIGHTS = ROOT / "models/b/taco_n_types_30/best.pt"
+SUPPORTED_CLASS_MAPS = ({0: "rubbish"}, {0: "bottle", 1: "bag", 2: "can"})
+CLASS_LABELS = {"rubbish": "Мусор", "bottle": "Бутылка", "bag": "Пакет", "can": "Банка"}
+CLASS_COLORS = {"rubbish": "#00c28a", "bottle": "#0099ff", "bag": "#ffba08", "can": "#e85aad"}
+
+
+def validate_classes(names: dict[int, str]) -> None:
+    if names not in SUPPORTED_CLASS_MAPS:
+        raise ValueError(f"Expected 0=rubbish or bottle/bag/can detection classes; received {names}")
 
 
 def local_path(path: str | Path) -> Path:
@@ -86,9 +95,14 @@ class Prediction:
     stage_ms: dict | None = None
 
     def to_dict(self) -> dict:
+        names = self.settings.get("classes", {}).values()
+        counts = {name: 0 for name in names}
+        for detection in self.detections:
+            counts[detection.class_name] = counts.get(detection.class_name, 0) + 1
         return {
             "width": self.image.width, "height": self.image.height,
             "count": len(self.detections), "detections": [asdict(d) for d in self.detections],
+            "counts_by_class": counts,
             "predict_ms": self.elapsed_ms, "device": self.device, "stage_ms": self.stage_ms, **self.settings,
             "coordinate_system": "xyxy pixels of EXIF-oriented RGB image",
             "timing_scope": "predict + CPU box extraction; excludes load/decode/drawing; may include first-call warmup",
@@ -99,7 +113,8 @@ class Prediction:
         draw = ImageDraw.Draw(output)
         width = max(2, round(min(output.size) / 400))
         for item in self.detections:
-            draw.rectangle(item.xyxy, outline="#00c28a", width=width)
+            color = CLASS_COLORS.get(item.class_name, "#00c28a")
+            draw.rectangle(item.xyxy, outline=color, width=width)
             x, y = item.xyxy[:2]
             text = f"{item.class_name} {item.confidence:.0%}"
             position = (x, max(0, y - 15))
@@ -130,8 +145,9 @@ class Detector:
             raise RuntimeError(f"Cannot load checkpoint {self.weights.name}: {exc}") from exc
         names = self.model.names
         self.names = dict(enumerate(names)) if isinstance(names, list) else {int(k): v for k, v in names.items()}
-        if self.names != {0: "rubbish"} or getattr(self.model, "task", "detect") != "detect":
-            raise ValueError(f"Expected a detection checkpoint with 0=rubbish; received {self.names}")
+        validate_classes(self.names)
+        if getattr(self.model, "task", "detect") != "detect":
+            raise ValueError("Expected an object detection checkpoint")
         self._lock = threading.Lock()
 
     def predict(self, source: str | Path | bytes | Image.Image, *, imgsz: int = 640,
@@ -153,7 +169,7 @@ class Detector:
                     detections.append(Detection(class_id, self.names[class_id], float(score), tuple(map(float, xyxy))))
             elapsed = (perf_counter() - start) * 1000
         return Prediction(pixels, detections, elapsed, self.device,
-                          {"imgsz": imgsz, "conf": conf, "nms_iou": iou, "max_det": max_det, "weights": str(self.weights)},
+                          {"imgsz": imgsz, "conf": conf, "nms_iou": iou, "max_det": max_det, "weights": str(self.weights), "classes": self.names},
                           {k: float(v) for k, v in (getattr(result, "speed", None) or {}).items() if v is not None})
 
 

@@ -1,0 +1,8 @@
+path: C:\Users\azatm2\projects\outpeer-cv\data\processed\taco_types
+names:
+  0: bottle
+  1: bag
+  2: can
+train: C:\Users\azatm2\projects\outpeer-cv\data\processed\taco_types\images\train
+val: C:\Users\azatm2\projects\outpeer-cv\data\processed\taco_types\images\val
+test: C:\Users\azatm2\projects\outpeer-cv\data\processed\taco_types\images\test

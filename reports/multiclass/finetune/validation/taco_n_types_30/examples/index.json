@@ -1,0 +1,44 @@
+{
+  "tp": [
+    {
+      "image": "images/val/image_00000000.png",
+      "file": "examples/image_00000000.jpg"
+    },
+    {
+      "image": "images/val/image_00000002.png",
+      "file": "examples/image_00000002.jpg"
+    },
+    {
+      "image": "images/val/image_00000003.png",
+      "file": "examples/image_00000003.jpg"
+    }
+  ],
+  "fp": [
+    {
+      "image": "images/val/image_00000000.png",
+      "file": "examples/image_00000000.jpg"
+    },
+    {
+      "image": "images/val/image_00000003.png",
+      "file": "examples/image_00000003.jpg"
+    },
+    {
+      "image": "images/val/image_00000006.png",
+      "file": "examples/image_00000006.jpg"
+    }
+  ],
+  "fn": [
+    {
+      "image": "images/val/image_00000003.png",
+      "file": "examples/image_00000003.jpg"
+    },
+    {
+      "image": "images/val/image_00000005.png",
+      "file": "examples/image_00000005.jpg"
+    },
+    {
+      "image": "images/val/image_00000006.png",
+      "file": "examples/image_00000006.jpg"
+    }
+  ]
+}

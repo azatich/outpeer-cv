@@ -1,0 +1,22 @@
+{
+  "app_test_method": "Streamlit AppTest with actual local checkpoint/image; only file upload transport patched",
+  "browser_test": false,
+  "device": "cpu",
+  "model": "taco_n_types_finetune_50",
+  "image": "images/test/image_00001029.png",
+  "classes": {
+    "0": "bottle",
+    "1": "bag",
+    "2": "can"
+  },
+  "counts_by_class": {
+    "bottle": 1,
+    "bag": 0,
+    "can": 5
+  },
+  "three_download_formats": "passed",
+  "stale_result_reset": "passed",
+  "exceptions": 0,
+  "tests_passed": 62,
+  "pytest_output": "..............................................................           [100%]\n62 passed in 5.72s"
+}
